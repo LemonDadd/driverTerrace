@@ -24,6 +24,16 @@
 		DAA08F7922394FF300E944FE /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F7822394FF300E944FE /* LoginView.m */; };
 		DAA08F7C2239508000E944FE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F7B2239508000E944FE /* LoginViewController.m */; };
 		DAA08F802239513A00E944FE /* LoginTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F7F2239513A00E944FE /* LoginTextView.m */; };
+		DAA08F83223A945200E944FE /* HomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F82223A945200E944FE /* HomeTopView.m */; };
+		DAA08F86223A946800E944FE /* HomePeopleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F85223A946800E944FE /* HomePeopleView.m */; };
+		DAA08F89223AB7AC00E944FE /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F88223AB7AC00E944FE /* RouteViewController.m */; };
+		DAA08F8C223AB7BB00E944FE /* RouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F8B223AB7BB00E944FE /* RouteDetailViewController.m */; };
+		DAA08F8F223AB7D000E944FE /* RouteView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F8E223AB7D000E944FE /* RouteView.m */; };
+		DAA08F93223AB8BF00E944FE /* RouteViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F92223AB8BF00E944FE /* RouteViewTableViewCell.m */; };
+		DAA08F96223AC07400E944FE /* RouteDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F95223AC07400E944FE /* RouteDetailView.m */; };
+		DAA08F9A223AC09D00E944FE /* RouteDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F99223AC09D00E944FE /* RouteDetailTableViewCell.m */; };
+		DAA08FA1223ACA3100E944FE /* RouteDetailTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08F9F223ACA3100E944FE /* RouteDetailTopTableViewCell.m */; };
+		DAA08FA2223ACA3100E944FE /* RouteDetailTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA08FA0223ACA3100E944FE /* RouteDetailTopTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +92,25 @@
 		DAA08F7B2239508000E944FE /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		DAA08F7E2239513A00E944FE /* LoginTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginTextView.h; sourceTree = "<group>"; };
 		DAA08F7F2239513A00E944FE /* LoginTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginTextView.m; sourceTree = "<group>"; };
+		DAA08F81223A945200E944FE /* HomeTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTopView.h; sourceTree = "<group>"; };
+		DAA08F82223A945200E944FE /* HomeTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTopView.m; sourceTree = "<group>"; };
+		DAA08F84223A946800E944FE /* HomePeopleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePeopleView.h; sourceTree = "<group>"; };
+		DAA08F85223A946800E944FE /* HomePeopleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePeopleView.m; sourceTree = "<group>"; };
+		DAA08F87223AB7AC00E944FE /* RouteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
+		DAA08F88223AB7AC00E944FE /* RouteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
+		DAA08F8A223AB7BB00E944FE /* RouteDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteDetailViewController.h; sourceTree = "<group>"; };
+		DAA08F8B223AB7BB00E944FE /* RouteDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteDetailViewController.m; sourceTree = "<group>"; };
+		DAA08F8D223AB7D000E944FE /* RouteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteView.h; sourceTree = "<group>"; };
+		DAA08F8E223AB7D000E944FE /* RouteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteView.m; sourceTree = "<group>"; };
+		DAA08F91223AB8BF00E944FE /* RouteViewTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteViewTableViewCell.h; sourceTree = "<group>"; };
+		DAA08F92223AB8BF00E944FE /* RouteViewTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteViewTableViewCell.m; sourceTree = "<group>"; };
+		DAA08F94223AC07400E944FE /* RouteDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteDetailView.h; sourceTree = "<group>"; };
+		DAA08F95223AC07400E944FE /* RouteDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteDetailView.m; sourceTree = "<group>"; };
+		DAA08F98223AC09D00E944FE /* RouteDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteDetailTableViewCell.h; sourceTree = "<group>"; };
+		DAA08F99223AC09D00E944FE /* RouteDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteDetailTableViewCell.m; sourceTree = "<group>"; };
+		DAA08F9E223ACA3100E944FE /* RouteDetailTopTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteDetailTopTableViewCell.h; sourceTree = "<group>"; };
+		DAA08F9F223ACA3100E944FE /* RouteDetailTopTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteDetailTopTableViewCell.m; sourceTree = "<group>"; };
+		DAA08FA0223ACA3100E944FE /* RouteDetailTopTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RouteDetailTopTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +239,10 @@
 		DAA08F292239430E00E944FE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DAA08F81223A945200E944FE /* HomeTopView.h */,
+				DAA08F82223A945200E944FE /* HomeTopView.m */,
+				DAA08F84223A946800E944FE /* HomePeopleView.h */,
+				DAA08F85223A946800E944FE /* HomePeopleView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -231,19 +264,13 @@
 		DAA08F2D223949F400E944FE /* RouteViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DAA08F2E223949F400E944FE /* Controller */,
 				DAA08F2F223949F400E944FE /* Model */,
 				DAA08F30223949F400E944FE /* View */,
 				DAA08F31223949F400E944FE /* Request */,
+				DAA08F87223AB7AC00E944FE /* RouteViewController.h */,
+				DAA08F88223AB7AC00E944FE /* RouteViewController.m */,
 			);
 			path = RouteViewController;
-			sourceTree = "<group>";
-		};
-		DAA08F2E223949F400E944FE /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		DAA08F2F223949F400E944FE /* Model */ = {
@@ -256,6 +283,9 @@
 		DAA08F30223949F400E944FE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DAA08F90223AB8A200E944FE /* cells */,
+				DAA08F8D223AB7D000E944FE /* RouteView.h */,
+				DAA08F8E223AB7D000E944FE /* RouteView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -309,19 +339,13 @@
 		DAA08F37223949F500E944FE /* RouteDetailViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DAA08F38223949F500E944FE /* Controller */,
 				DAA08F39223949F500E944FE /* Model */,
 				DAA08F3A223949F500E944FE /* View */,
 				DAA08F3B223949F500E944FE /* Request */,
+				DAA08F8A223AB7BB00E944FE /* RouteDetailViewController.h */,
+				DAA08F8B223AB7BB00E944FE /* RouteDetailViewController.m */,
 			);
 			path = RouteDetailViewController;
-			sourceTree = "<group>";
-		};
-		DAA08F38223949F500E944FE /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		DAA08F39223949F500E944FE /* Model */ = {
@@ -334,6 +358,9 @@
 		DAA08F3A223949F500E944FE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DAA08F97223AC07D00E944FE /* Cell */,
+				DAA08F94223AC07400E944FE /* RouteDetailView.h */,
+				DAA08F95223AC07400E944FE /* RouteDetailView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -610,6 +637,27 @@
 			path = LoginTextView;
 			sourceTree = "<group>";
 		};
+		DAA08F90223AB8A200E944FE /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				DAA08F91223AB8BF00E944FE /* RouteViewTableViewCell.h */,
+				DAA08F92223AB8BF00E944FE /* RouteViewTableViewCell.m */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		DAA08F97223AC07D00E944FE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DAA08F98223AC09D00E944FE /* RouteDetailTableViewCell.h */,
+				DAA08F99223AC09D00E944FE /* RouteDetailTableViewCell.m */,
+				DAA08F9E223ACA3100E944FE /* RouteDetailTopTableViewCell.h */,
+				DAA08F9F223ACA3100E944FE /* RouteDetailTopTableViewCell.m */,
+				DAA08FA0223ACA3100E944FE /* RouteDetailTopTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -715,6 +763,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAA08FA2223ACA3100E944FE /* RouteDetailTopTableViewCell.xib in Resources */,
 				DAA08F002239406700E944FE /* LaunchScreen.storyboard in Resources */,
 				DAA08EFD2239406700E944FE /* Assets.xcassets in Resources */,
 				DAA08EFB2239406300E944FE /* Main.storyboard in Resources */,
@@ -783,17 +832,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAA08F8F223AB7D000E944FE /* RouteView.m in Sources */,
 				DAA08EF82239406300E944FE /* ViewController.m in Sources */,
 				DAA08F6F22394CCE00E944FE /* BaseNavController.m in Sources */,
 				DAA08F6C22394CCE00E944FE /* BaseViewController.m in Sources */,
+				DAA08FA1223ACA3100E944FE /* RouteDetailTopTableViewCell.m in Sources */,
 				DAA08F032239406700E944FE /* main.m in Sources */,
 				DAA08F802239513A00E944FE /* LoginTextView.m in Sources */,
 				DAA08F7C2239508000E944FE /* LoginViewController.m in Sources */,
+				DAA08F86223A946800E944FE /* HomePeopleView.m in Sources */,
+				DAA08F9A223AC09D00E944FE /* RouteDetailTableViewCell.m in Sources */,
 				DAA08F7322394D3000E944FE /* HomeViewController.m in Sources */,
 				DAA08EF52239406300E944FE /* AppDelegate.m in Sources */,
 				DAA08F6B22394CCE00E944FE /* BaseView.m in Sources */,
 				DAA08F7922394FF300E944FE /* LoginView.m in Sources */,
 				DAA08F6E22394CCE00E944FE /* BaseTableView.m in Sources */,
+				DAA08F96223AC07400E944FE /* RouteDetailView.m in Sources */,
+				DAA08F89223AB7AC00E944FE /* RouteViewController.m in Sources */,
+				DAA08F83223A945200E944FE /* HomeTopView.m in Sources */,
+				DAA08F8C223AB7BB00E944FE /* RouteDetailViewController.m in Sources */,
+				DAA08F93223AB8BF00E944FE /* RouteViewTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -158,13 +158,11 @@
                  controlPoint:leftMiddle];
     //设置阴影路径
     self.layer.shadowPath = path.CGPath;
-    
-    
-    
-    
 }
 
 - (void)btnEvent:(UIButton *)btn {
+ 
+    
     
 }
 

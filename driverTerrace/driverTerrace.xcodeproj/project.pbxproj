@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28751140572E12D2109013FA /* libPods-driverTerrace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FD2875E51B8A57DE8B8148 /* libPods-driverTerrace.a */; };
+		B0474D7F223B9ED6003C6AEE /* HomeUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0474D7E223B9ED6003C6AEE /* HomeUserView.m */; };
+		B0474D83223BAEED003C6AEE /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0474D82223BAEED003C6AEE /* CityViewController.m */; };
 		DAA08EF52239406300E944FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08EF42239406300E944FE /* AppDelegate.m */; };
 		DAA08EF82239406300E944FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA08EF72239406300E944FE /* ViewController.m */; };
 		DAA08EFB2239406300E944FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA08EF92239406300E944FE /* Main.storyboard */; };
@@ -57,6 +59,10 @@
 		22FD2875E51B8A57DE8B8148 /* libPods-driverTerrace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-driverTerrace.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7B1639EF61C1F0557DEDA1 /* Pods-driverTerrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-driverTerrace.release.xcconfig"; path = "Pods/Target Support Files/Pods-driverTerrace/Pods-driverTerrace.release.xcconfig"; sourceTree = "<group>"; };
 		34A57B9EC30AD0E5F955AF52 /* Pods-driverTerrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-driverTerrace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-driverTerrace/Pods-driverTerrace.debug.xcconfig"; sourceTree = "<group>"; };
+		B0474D7D223B9ED6003C6AEE /* HomeUserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeUserView.h; sourceTree = "<group>"; };
+		B0474D7E223B9ED6003C6AEE /* HomeUserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeUserView.m; sourceTree = "<group>"; };
+		B0474D81223BAEED003C6AEE /* CityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityViewController.h; sourceTree = "<group>"; };
+		B0474D82223BAEED003C6AEE /* CityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityViewController.m; sourceTree = "<group>"; };
 		DAA08EF02239406300E944FE /* driverTerrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = driverTerrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA08EF32239406300E944FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DAA08EF42239406300E944FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -147,6 +153,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B0474D80223BAED2003C6AEE /* CityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B0474D81223BAEED003C6AEE /* CityViewController.h */,
+				B0474D82223BAEED003C6AEE /* CityViewController.m */,
+			);
+			path = CityViewController;
+			sourceTree = "<group>";
+		};
 		C159C779D83309567C2063DF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,7 +203,7 @@
 				DAA08F32223949F400E944FE /* ResetPassViewController */,
 				DAA08F55223949F500E944FE /* MyViewController */,
 				DAA08F46223949F500E944FE /* AddPassengerViewController */,
-				DAA08F50223949F500E944FE /* CityViewController */,
+				B0474D80223BAED2003C6AEE /* CityViewController */,
 				DAA08F37223949F500E944FE /* RouteDetailViewController */,
 				DAA08F2D223949F400E944FE /* RouteViewController */,
 				DAA08F41223949F500E944FE /* SettingViewController */,
@@ -243,6 +258,8 @@
 				DAA08F82223A945200E944FE /* HomeTopView.m */,
 				DAA08F84223A946800E944FE /* HomePeopleView.h */,
 				DAA08F85223A946800E944FE /* HomePeopleView.m */,
+				B0474D7D223B9ED6003C6AEE /* HomeUserView.h */,
+				B0474D7E223B9ED6003C6AEE /* HomeUserView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -519,45 +536,6 @@
 			sourceTree = "<group>";
 		};
 		DAA08F4F223949F500E944FE /* Request */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Request;
-			sourceTree = "<group>";
-		};
-		DAA08F50223949F500E944FE /* CityViewController */ = {
-			isa = PBXGroup;
-			children = (
-				DAA08F51223949F500E944FE /* Controller */,
-				DAA08F52223949F500E944FE /* Model */,
-				DAA08F53223949F500E944FE /* View */,
-				DAA08F54223949F500E944FE /* Request */,
-			);
-			path = CityViewController;
-			sourceTree = "<group>";
-		};
-		DAA08F51223949F500E944FE /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		DAA08F52223949F500E944FE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		DAA08F53223949F500E944FE /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		DAA08F54223949F500E944FE /* Request */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -845,11 +823,13 @@
 				DAA08F7322394D3000E944FE /* HomeViewController.m in Sources */,
 				DAA08EF52239406300E944FE /* AppDelegate.m in Sources */,
 				DAA08F6B22394CCE00E944FE /* BaseView.m in Sources */,
+				B0474D7F223B9ED6003C6AEE /* HomeUserView.m in Sources */,
 				DAA08F7922394FF300E944FE /* LoginView.m in Sources */,
 				DAA08F6E22394CCE00E944FE /* BaseTableView.m in Sources */,
 				DAA08F96223AC07400E944FE /* RouteDetailView.m in Sources */,
 				DAA08F89223AB7AC00E944FE /* RouteViewController.m in Sources */,
 				DAA08F83223A945200E944FE /* HomeTopView.m in Sources */,
+				B0474D83223BAEED003C6AEE /* CityViewController.m in Sources */,
 				DAA08F8C223AB7BB00E944FE /* RouteDetailViewController.m in Sources */,
 				DAA08F93223AB8BF00E944FE /* RouteViewTableViewCell.m in Sources */,
 			);

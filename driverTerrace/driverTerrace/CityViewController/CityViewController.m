@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = _cityType == CitytypeFrom?@"出发地":@"目的地";
+    
     _tab = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tab.backgroundColor = kColorWithHex(0xf9f9f9);
     _tab.delegate =self;
@@ -27,7 +29,7 @@
     [self.view addSubview:_tab];
     [self setExtraCellLineHidden:_tab];
     [_tab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self);
+        make.edges.equalTo(self.view);
     }];
     
     _allResource = @[@"a",@"a",@"a",@"a",@"a",@"a",@"a"];

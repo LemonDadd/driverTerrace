@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseViewController : UIViewController
 
+- (void)toLoginViewController;
+
 @end
 
 NS_ASSUME_NONNULL_END

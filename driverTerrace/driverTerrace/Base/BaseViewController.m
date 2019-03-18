@@ -7,6 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "LoginViewController.h"
+#import "BaseNavController.h"
 
 @interface BaseViewController ()
 
@@ -17,8 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = kRGBColor(249, 249, 248);
     self.edgesForExtendedLayout =UIRectEdgeNone;
+}
+
+- (void)toLoginViewController {
+    LoginViewController * vc = [LoginViewController new];
+    BaseNavController *nav = [[BaseNavController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:NO completion:nil];
 }
 
 - (void)back {

@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, Citytype) {
+    CitytypeFrom,
+    CitytypeTo,
+};
+
 @interface CityViewController : BaseViewController
+
+@property (nonatomic, assign)Citytype cityType;
 
 @end
 

@@ -10,15 +10,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, LoginTextViewType) {
+    LoginTextViewTypeMsg,
+    LoginTextViewTypePass,
+};
+
 typedef void(^MsgEvent)(void);
 
 @interface LoginTextView : BaseView
 
 @property (nonatomic, strong)UITextField *textField;
 @property (nonatomic, strong)UIButton *msgBtn;
-@property (nonatomic, assign)BOOL showMsgBtn;
+@property (nonatomic, strong)UIButton *passBtn;
+@property (nonatomic, copy)NSString *placeholder;
 
 @property (nonatomic, copy)MsgEvent msgEvent;
+@property (nonatomic, assign)LoginTextViewType type;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

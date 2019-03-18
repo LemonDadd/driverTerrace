@@ -19,6 +19,11 @@
 
 @implementation HomeViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self toLoginViewController];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -40,10 +45,13 @@
         make.right.equalTo(@-13);
     }];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        self.homeTopView.layer.masksToBounds = YES;
-       
-    });
+    _homePeopleView = [HomePeopleView new];
+    [self.view addSubview:_homePeopleView];
+    [_homePeopleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.homeTopView);
+        make.top.equalTo(self.homeTopView.mas_bottom).offset(10);
+        make.bottom.equalTo(self.view).offset(-30);
+    }];
     
 }
 

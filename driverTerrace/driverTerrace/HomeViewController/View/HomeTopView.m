@@ -7,6 +7,10 @@
 //
 
 #import "HomeTopView.h"
+#import "MyViewController.h"
+#import "RouteViewController.h"
+#import "SettingViewController.h"
+
 
 @interface HomeTopView()
 
@@ -24,9 +28,6 @@
 {
     self = [super init];
     if (self) {
-        
-       
-       
         
         _headerView = [UIImageView new];
         _headerView.backgroundColor = [UIColor redColor];
@@ -72,7 +73,7 @@
         _contentV = [UIView new];
         [self addSubview:_contentV];
         [_contentV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.peopleLabel.mas_bottom).offset(30);
+            make.top.equalTo(self.peopleLabel.mas_bottom).offset(20);
             make.left.equalTo(self).offset(20);
             make.right.equalTo(self).offset(-20);
             make.height.equalTo(@80);
@@ -163,7 +164,24 @@
 - (void)btnEvent:(UIButton *)btn {
  
     
-    
+    if (btn.tag == 0) {
+        MyViewController *vc= [MyViewController new];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
+    }
+    if (btn.tag ==1) {
+        RouteViewController *vc= [RouteViewController new];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
+    }
+    if (btn.tag ==2) {
+        
+    }
+    if (btn.tag ==3) {
+        
+    }
+    if (btn.tag ==4) {
+        SettingViewController *vc= [SettingViewController new];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

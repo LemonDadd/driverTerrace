@@ -139,6 +139,7 @@
         }];
         
         _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_locationBtn setImage:[UIImage imageNamed:@"ico_route_location"] forState:UIControlStateNormal];
         [self.contentView addSubview:_locationBtn];
         [_locationBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.payImg);

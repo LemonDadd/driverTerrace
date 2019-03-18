@@ -7,6 +7,9 @@
 //
 
 #import "HomePeopleView.h"
+#import "HomeUserView.h"
+#import "AddPassengerViewController.h"
+#import "HomeAlertView.h"
 
 @interface HomePeopleView()
 
@@ -29,12 +32,16 @@
     if (self) {
        
         _lineLabel = [UILabel new];
+        _lineLabel.text = @"线路车: 运城市-新绛县";
+        _lineLabel.font = [UIFont boldSystemFontOfSize:18];
+        _lineLabel.textColor = [UIColor blackColor];
         [self addSubview:_lineLabel];
         [_lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.equalTo(@10);
         }];
         
         _leftImageV = [UIImageView new];
+        _leftImageV.image = [UIImage imageNamed:@"ico_home_Set"];
         [self addSubview:_leftImageV];
         [_leftImageV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.lineLabel);
@@ -42,6 +49,8 @@
         }];
         
         _priceLabel = [UILabel new];
+        _priceLabel.text = @"170/位";
+        _priceLabel.font = [UIFont systemFontOfSize:15];
         [self addSubview:_priceLabel];
         [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.leftImageV);
@@ -50,6 +59,8 @@
         
         
         _timeLabel = [UILabel new];
+        _timeLabel.text = @"14:00";
+        _timeLabel.font = [UIFont systemFontOfSize:15];
         [self addSubview:_timeLabel];
         [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.leftImageV);
@@ -58,13 +69,15 @@
         
         
         _rightImageV = [UIImageView new];
+        _rightImageV.image = [UIImage imageNamed:@"ico_home_time"];
         [self addSubview:_rightImageV];
         [_rightImageV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.timeLabel);
-            make.right.equalTo(self.rightImageV.mas_left);
+            make.right.equalTo(self.timeLabel.mas_left);
         }];
         
         UIView *line= [UIView new];
+        line.backgroundColor = kRGBColor(204, 204, 204);
         [self addSubview:line];
         [line mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self);
@@ -76,26 +89,14 @@
         _contentView = [UIView new];
         [self addSubview:_contentView];
         [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(self);
+            make.left.right.equalTo(self);
+            make.bottom.equalTo(self).offset(-5);
             make.top.equalTo(line.mas_bottom);
-            make.height.equalTo(self.mas_width);
         }];
         
-        UIView *line1= [UIView new];
-        [self addSubview:line1];
-        [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.top.bottom.equalTo(self.contentView);
-            make.width.equalTo(@.5);
-        }];
         
-        UIView *line2= [UIView new];
-        [self addSubview:line2];
-        [line2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.left.right.equalTo(self.contentView);
-            make.height.equalTo(@.5);
-        }];
-        
-         [self layoutIfNeeded];
+        [self createUser];
+        [self layoutIfNeeded];
         
     }
     return self;
@@ -108,39 +109,60 @@
     for (UIView *v in self.contentView.subviews) {
         [v removeFromSuperview];
     }
+    
+    UIView *line1= [UIView new];
+    line1.backgroundColor = kRGBColor(204, 204, 204);
+    [_contentView addSubview:line1];
+    [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.top.bottom.equalTo(self.contentView);
+        make.width.equalTo(@.5);
+    }];
+    
+    UIView *line2= [UIView new];
+    line2.backgroundColor = kRGBColor(204, 204, 204);
+    [_contentView addSubview:line2];
+    [line2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.left.right.equalTo(self.contentView);
+        make.height.equalTo(@.5);
+    }];
+    
     for (int i=0; i<4; i++) {
-        UIView *view = [UIView new];
-        [self.contentView addSubview:view];
+        HomeUserView *view = [HomeUserView new];
+        UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userEvente:)];
+        view.tag = i;
+        view.userInteractionEnabled = YES;
+        [view addGestureRecognizer:gr];
+        [_contentView addSubview:view];
         switch (i) {
-            case 1:{
+            case 0:{
                 [view mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.top.equalTo(self.contentView);
-                    make.right.equalTo(self.contentView.mas_centerX).offset(-.5);
-                    make.bottom.equalTo(self.contentView.mas_centerY).offset(-.5);
+                    make.right.equalTo(line1.mas_left);
+                    make.bottom.equalTo(line2.mas_top);
+                }];
+            }
+                break;
+            case 1:{
+                [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.right.top.equalTo(self.contentView);
+                    make.left.equalTo(line1.mas_right);
+                    make.bottom.equalTo(line2.mas_top);
                 }];
             }
                 break;
             case 2:{
                 [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.right.top.equalTo(self.contentView);
-                    make.left.equalTo(self.contentView.mas_centerX).offset(.5);
-                    make.bottom.equalTo(self.contentView.mas_centerY).offset(-.5);
+                    make.left.bottom.equalTo(self.contentView);
+                    make.right.equalTo(line1.mas_left);
+                    make.top.equalTo(line2.mas_bottom);
                 }];
             }
                 break;
             case 3:{
                 [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.bottom.equalTo(self.contentView);
-                    make.right.equalTo(self.contentView.mas_centerX).offset(-.5);
-                    make.top.equalTo(self.contentView.mas_centerY).offset(.5);
-                }];
-            }
-                break;
-            case 4:{
-                [view mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.right.bottom.equalTo(self.contentView);
-                    make.left.equalTo(self.contentView.mas_centerX).offset(.5);
-                    make.top.equalTo(self.contentView.mas_centerY).offset(.5);
+                    make.left.equalTo(line1.mas_right);
+                    make.top.equalTo(line2.mas_bottom);
                 }];
             }
                 break;
@@ -148,6 +170,24 @@
                 break;
         }
     }
+}
+
+- (void)userEvente:(UITapGestureRecognizer *)gr {
+    
+    NSInteger tag = [gr view].tag;
+    if (tag == 0) {
+        AddPassengerViewController *vc= [AddPassengerViewController new];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
+    } else {
+        HomeAlertView *alert = [HomeAlertView new];
+        [[CustomView getInstancetype] windowAlertBy:alert isTouchClose:false color:nil animated:YES addDelegate:nil];
+        [alert mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(alert.superview);
+            make.width.height.equalTo(self);
+        }];
+        [alert layoutIfNeeded];
+    }
+   
 }
 
 -(void)layoutSubviews {

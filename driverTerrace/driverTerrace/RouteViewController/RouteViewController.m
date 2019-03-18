@@ -7,8 +7,11 @@
 //
 
 #import "RouteViewController.h"
+#import "RouteView.h"
 
 @interface RouteViewController ()
+
+@property (nonatomic, strong)RouteView *routeView;
 
 @end
 
@@ -17,6 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _routeView = [RouteView new];
+    [self.view addSubview:_routeView];
+    [_routeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 /*

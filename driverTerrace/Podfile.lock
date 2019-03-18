@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - HWDownSelectedView (1.0.1)
   - IQKeyboardManager (6.2.0)
   - LYEmptyView (1.2.3)
   - Masonry (1.1.0)
@@ -28,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - HWDownSelectedView (~> 1.0.1)
   - IQKeyboardManager
   - LYEmptyView
   - Masonry
@@ -40,6 +42,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
+    - HWDownSelectedView
     - IQKeyboardManager
     - LYEmptyView
     - Masonry
@@ -51,6 +54,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  HWDownSelectedView: 950a2d2e5b0e5d9538b33873c3badf642e461b86
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   LYEmptyView: ea5827f3f81fcbec427f990005501991477bdae8
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -60,6 +64,6 @@ SPEC CHECKSUMS:
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
 
-PODFILE CHECKSUM: e596aa372f1631e2284c85a9fbd3df9ab40f2076
+PODFILE CHECKSUM: 6b40b6af5dc8cf8a76708628cfd29059e6cbc3ac
 
 COCOAPODS: 1.5.0

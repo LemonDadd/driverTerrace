@@ -8,6 +8,7 @@
 
 #import "LoginView.h"
 #import "LoginTextView.h"
+#import "RegisterViewController.h"
 
 @interface LoginView ()
 
@@ -34,7 +35,7 @@
     if (self) {
         
         UIImageView *bg = [UIImageView new];
-        bg.image = [UIImage imageNamed:@""];
+        bg.image = [UIImage imageNamed:@"ico_home_bg"];
         [self addSubview:bg];
         [bg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
@@ -42,6 +43,7 @@
         
         
         UIImageView *header = [UIImageView new];
+        header.image = [UIImage imageNamed:@"ico_logo"];
         [self addSubview:header];
         [header mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
@@ -50,39 +52,78 @@
         
         
         _userText = [LoginTextView new];
-        _userText.textField.placeholder = @"请输入手机号";
+        _userText.placeholder = @"请输入手机号";
         [self addSubview:_userText];
         [_userText mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.left.equalTo(self).offset(20);
-            make.right.equalTo(self).offset(-20);
+            make.left.equalTo(self).offset(30);
+            make.right.equalTo(self).offset(-30);
+            make.top.equalTo(header.mas_bottom).offset(40);
         }];
         
+        kWeakSelf(self);
         _passText = [LoginTextView new];
-        _passText.textField.placeholder = @"请输入验证码";
-        _passText.showMsgBtn = YES;
+        _passText.msgEvent = ^{
+            [weakself sendCode];
+        };
+        _passText.placeholder = @"请输入验证码";
+        _passText.type = LoginTextViewTypeMsg;
         [self addSubview:_passText];
         [_passText mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.userText).offset(5);
+            make.top.equalTo(self.userText.mas_bottom);
             make.left.right.equalTo(self.userText);
         }];
         
+        _forgetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _forgetBtn.hidden = YES;
+        [_forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
+        [_forgetBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [_forgetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_forgetBtn addTarget:self action:@selector(forgetBtnEvent) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_forgetBtn];
+        [_forgetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.passText);
+            make.top.equalTo(self.passText.mas_bottom).offset(8);
+        }];
+        
+        _rememberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _rememberBtn.hidden = YES;
+        [_rememberBtn setTitle:@"  记住密码" forState:UIControlStateNormal];
+        [_rememberBtn setImage:[UIImage imageNamed:@"ico_pass"] forState:UIControlStateNormal];
+        [_rememberBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [_rememberBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_rememberBtn addTarget:self action:@selector(forgetBtnEvent) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_rememberBtn];
+        [_rememberBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.passText);
+            make.top.equalTo(self.passText.mas_bottom).offset(8);
+            
+        }];
+        
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_loginBtn setBackgroundImage:[UIImage imageNamed:@"ico_login"] forState:UIControlStateNormal];
+        [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+        [_loginBtn setTitleColor:kRGBColor(37, 124, 229) forState:UIControlStateNormal];
+//        [_loginBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [_loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_loginBtn];
         [_loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.left.right.equalTo(self.passText);
-            make.top.equalTo(self.passText.mas_bottom).offset(30);
+            make.top.equalTo(self.passText.mas_bottom).offset(60);
         }];
         
         
         UILabel *registerLabel = [UILabel new];
+        registerLabel.textColor = kRGBColor(166, 161, 225);
+        registerLabel.font = [UIFont systemFontOfSize:15];
         registerLabel.text = @"没有账号?马上注册";
         [self addSubview:registerLabel];
         [registerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.top.equalTo(self.loginBtn.mas_bottom).offset(10);
+            make.top.equalTo(self.loginBtn.mas_bottom).offset(20);
         }];
+        
         _registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_registerBtn addTarget:self action:@selector(pushRegister) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_registerBtn];
@@ -93,11 +134,13 @@
         
         
         _changeLabel = [UILabel new];
+        _changeLabel.font = [UIFont systemFontOfSize:14];
         _changeLabel.text = @"密码登录";
+        _changeLabel.textColor = [UIColor whiteColor];
         [self addSubview:_changeLabel];
         [_changeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.bottom.equalTo(self).offset(-30);
+            make.bottom.equalTo(self).offset(-40);
         }];
         
         _changeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -110,29 +153,30 @@
         
         UILabel *lineLabel = [UILabel new];
         lineLabel.text = @"其它登录方式";
+        lineLabel.textColor = [UIColor whiteColor];
         [self addSubview:lineLabel];
         [lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.changeLabel.mas_top).offset(-20);
+            make.bottom.equalTo(self.changeLabel.mas_top).offset(-35);
             make.centerX.equalTo(self);
         }];
         
         
         UIView *leftline = [UIView new];
-        leftline.backgroundColor = [UIColor whiteColor];
+        leftline.backgroundColor =kRGBColor(116, 96, 211);
         [self addSubview:leftline];
         [leftline mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self);
-            make.right.equalTo(lineLabel.mas_left).offset(-2);
+            make.right.equalTo(lineLabel.mas_left).offset(-5);
             make.centerY.equalTo(lineLabel);
             make.height.equalTo(@1);
         }];
         
         UIView *rightLine = [UIView new];
-        rightLine.backgroundColor = [UIColor whiteColor];
+        rightLine.backgroundColor =kRGBColor(116, 96, 211);
         [self addSubview:rightLine];
         [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self);
-            make.left.equalTo(lineLabel.mas_right).offset(-2);
+            make.left.equalTo(lineLabel.mas_right).offset(5);
             make.centerY.equalTo(leftline);
             make.height.equalTo(@1);
         }];
@@ -143,12 +187,13 @@
 
 //登录
 - (void)login {
-    
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 //注册
 - (void)pushRegister {
-    
+    RegisterViewController *vc= [RegisterViewController new];
+    [self.viewController.navigationController pushViewController:vc animated:YES];
 }
 
 //切换密码登录
@@ -156,10 +201,30 @@
     _loginChange = !_loginChange;
     _changeLabel.text = _loginChange?@"验证码登录":@"密码登录";
     if (_loginChange) {
+        _passText.placeholder = @"请输入密码";
+        _passText.type = LoginTextViewTypePass;
         
     } else {
-        
+        _passText.placeholder = @"请输入验证码";
+        _passText.type = LoginTextViewTypeMsg;
     }
+    _rememberBtn.hidden = !_loginChange;
+    _forgetBtn.hidden = !_loginChange;
+}
+
+//忘记密码
+- (void)forgetBtnEvent {
+    
+}
+
+- (void)sendCode {
+    
+    if (!self.userText.textField.text.length) {
+        [CustomView alertMessage:@"请输入验证码" view:self];
+        return;
+    }
+    [AllRequest requestSendPhoneCodeByPhone:self.userText.textField.text Key:3 request:^(BOOL message, NSString * _Nonnull errorMsg) {
+    }];
 }
 
 @end

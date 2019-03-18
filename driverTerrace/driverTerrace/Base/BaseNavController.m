@@ -14,15 +14,15 @@
 
 @implementation BaseNavController
 
+
 + (void)initialize
 {
     // 导航
     UINavigationBar *navBar = [UINavigationBar appearance];
     NSDictionary *dict = @{NSForegroundColorAttributeName :[UIColor whiteColor]};
-    [navBar setTitleTextAttributes:dict];
-    /** 设置导航栏背景图片 */
     [navBar setBackgroundImage:[UIImage imageNamed:@"ico_nav"] forBarMetrics:UIBarMetricsDefault];
-    /** 设置导航栏标题文字颜色 */
+    [navBar setTitleTextAttributes:dict];
+    
     
     // 设置整个项目所有item的主题样式
     UIBarButtonItem *item = [UIBarButtonItem appearance];
@@ -42,13 +42,16 @@
                                   };
     [item setTitleTextAttributes:disableAttr forState:UIControlStateDisabled];
     // 返回按钮
-    [item setBackButtonBackgroundImage:[[UIImage imageNamed:@"ico_left"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 40, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [item setBackButtonBackgroundImage:[[UIImage imageNamed:@"backitem"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 40, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [item setTintColor:[UIColor whiteColor]];
     // 设置文字，水平偏移到看不见的位置
     [item setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, 0) forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
-    
+
 }
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

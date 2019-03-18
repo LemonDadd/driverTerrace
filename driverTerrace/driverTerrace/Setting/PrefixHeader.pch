@@ -14,6 +14,7 @@
 
 #import "ViewSetting.h"
 #import "UrlSetting.h"
+#import "SNDefines.h"
 
 #import "MJRefresh.h"
 #import "MJExtension.h"
@@ -24,5 +25,10 @@
 #import "MBProgressHUD.h"
 #import "LYEmptyViewHeader.h"
 
+#import "JhlvShowAlertController.h"
+#import "CustomView.h"
+#import "HWDownSelectedView.h"
+#import "HttpHelper.h"
+#import "AllRequest.h"
 
 #endif /* PrefixHeader_pch */

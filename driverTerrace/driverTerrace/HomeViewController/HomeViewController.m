@@ -21,7 +21,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if ([UserInfoModel getUserInfoClass] == nil) {
+    if ([UserInfoModel getUserInfoModel] == nil) {
          [self toLoginViewController];
     }
 }
@@ -29,6 +29,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getUnderwayOrder) name:kGetUnderwayOrder object:nil];
+    
     self.title = @"司机";
     
     UIImageView *bgView = [UIImageView new];
@@ -55,6 +58,12 @@
         make.bottom.equalTo(self.view).offset(-30);
     }];
     
+}
+
+
+- (void)getUnderwayOrder {
+    [AllRequest requestGetUnderwayOrderByDriverid:[UserInfoModel getUserInfoModel].driverid request:^(NSArray * _Nonnull message, NSString * _Nonnull errorMsg) {
+    }];
 }
 
 /*

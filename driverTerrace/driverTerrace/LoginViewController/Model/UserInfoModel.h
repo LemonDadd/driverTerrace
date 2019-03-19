@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class UserInfoClass;
-static UserInfoClass *staticUserInfoClass;
+@class UserInfoModel;
+static UserInfoModel *staticUserInfoModel;
 
 @interface UserInfoModel : NSObject
 
@@ -33,37 +33,29 @@ static UserInfoClass *staticUserInfoClass;
 
 /**
  *  获取用户信息
- *
- *  @return
  */
-+ (UserInfoClass*)getUserInfoClass;
++ (UserInfoModel*)getUserInfoModel;
 
 /**
  *  保存用户信息
  */
-- (void)saveUserInfoClass;
+- (void)saveUserInfoModel;
 
 /**
  *  清除用户信息
  */
-+ (void)clearUserInfoClass;
++ (void)clearUserInfoModel;
 
 /**
  *  切换用户的头像
- *
- *  @param imagePath
  */
 + (void)saveUserHeadImagePath:(NSString*)imagePath;
 
 
 /**
  设置用户属性值
- 
- @param value
- @param key
- @return
  */
-+ (UserInfoClass *)setValue:(id)value forKey:(NSString *)key;
++ (UserInfoModel *)setValue:(id)value forKey:(NSString *)key;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -65,6 +65,8 @@
 		DAC779FC223FE48B002B6C0E /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC779FB223FE48B002B6C0E /* UserInfoModel.m */; };
 		DAC779FF223FF3C2002B6C0E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC779FE223FF3C2002B6C0E /* OrderModel.m */; };
 		DAC77A022240077C002B6C0E /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A012240077C002B6C0E /* RegisterView.m */; };
+		DAC77A0722413FAA002B6C0E /* ACActionSheet.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DAC77A0522413FAA002B6C0E /* ACActionSheet.bundle */; };
+		DAC77A0822413FAA002B6C0E /* ACActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A0622413FAA002B6C0E /* ACActionSheet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,6 +206,9 @@
 		DAC779FE223FF3C2002B6C0E /* OrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		DAC77A002240077C002B6C0E /* RegisterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
 		DAC77A012240077C002B6C0E /* RegisterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
+		DAC77A0422413FAA002B6C0E /* ACActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACActionSheet.h; sourceTree = "<group>"; };
+		DAC77A0522413FAA002B6C0E /* ACActionSheet.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ACActionSheet.bundle; sourceTree = "<group>"; };
+		DAC77A0622413FAA002B6C0E /* ACActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACActionSheet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -642,7 +647,6 @@
 			children = (
 				DAA08F57223949F500E944FE /* Model */,
 				DAA08F58223949F500E944FE /* View */,
-				DAA08F59223949F500E944FE /* Request */,
 				DAA08FA3223BFAA000E944FE /* MyViewController.h */,
 				DAA08FA4223BFAA000E944FE /* MyViewController.m */,
 			);
@@ -666,13 +670,6 @@
 				DAA08FAD223C03E400E944FE /* MyTextFieldTableViewCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		DAA08F59223949F500E944FE /* Request */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Request;
 			sourceTree = "<group>";
 		};
 		DAA08F5A22394A2700E944FE /* Setting */ = {
@@ -734,6 +731,7 @@
 		DAA08FAF223C12E700E944FE /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				DAC77A0322413FAA002B6C0E /* ACActionSheet */,
 				DAC779E8223FC261002B6C0E /* HttpHelp */,
 				DAA08FB7223C1A6B00E944FE /* PickView */,
 				DAA08FB0223C13D400E944FE /* CustomView */,
@@ -811,6 +809,16 @@
 				DAC779F1223FC261002B6C0E /* NHFUpLoadImages.m */,
 			);
 			path = NHFUpLoadAndDownImages;
+			sourceTree = "<group>";
+		};
+		DAC77A0322413FAA002B6C0E /* ACActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				DAC77A0422413FAA002B6C0E /* ACActionSheet.h */,
+				DAC77A0522413FAA002B6C0E /* ACActionSheet.bundle */,
+				DAC77A0622413FAA002B6C0E /* ACActionSheet.m */,
+			);
+			path = ACActionSheet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -921,6 +929,7 @@
 				DAA08FA2223ACA3100E944FE /* RouteDetailTopTableViewCell.xib in Resources */,
 				DAA08F002239406700E944FE /* LaunchScreen.storyboard in Resources */,
 				DAA08EFD2239406700E944FE /* Assets.xcassets in Resources */,
+				DAC77A0722413FAA002B6C0E /* ACActionSheet.bundle in Resources */,
 				DAA08EFB2239406300E944FE /* Main.storyboard in Resources */,
 				DAA08FBB223C1A7B00E944FE /* LZPickerView.xib in Resources */,
 			);
@@ -971,12 +980,14 @@
 				"${PODS_ROOT}/HWDownSelectedView/HWDownSelectedTF/Resources/arrow_up@2x.png",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/arrow_up@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1033,6 +1044,7 @@
 				DAA08FC2223C1D6300E944FE /* AddSelectedTableViewCell.m in Sources */,
 				DAA08FB6223C13D400E944FE /* CustomView.m in Sources */,
 				DAC779E3223FC221002B6C0E /* AllRequest.m in Sources */,
+				DAC77A0822413FAA002B6C0E /* ACActionSheet.m in Sources */,
 				DAC779F4223FC261002B6C0E /* NHFDownImages.m in Sources */,
 				DAA08FC9223CC20000E944FE /* MyView.m in Sources */,
 				DAA08FA8223BFB3200E944FE /* SettingViewController.m in Sources */,
@@ -1217,10 +1229,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/driverTerrace/Setting/PrefixHeader.pch";
 				INFOPLIST_FILE = driverTerrace/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerrace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1240,10 +1249,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/driverTerrace/Setting/PrefixHeader.pch";
 				INFOPLIST_FILE = driverTerrace/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerrace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1259,11 +1265,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4C4BBJ8J25;
 				INFOPLIST_FILE = driverTerraceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerraceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1278,11 +1280,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4C4BBJ8J25;
 				INFOPLIST_FILE = driverTerraceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerraceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1296,11 +1294,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4C4BBJ8J25;
 				INFOPLIST_FILE = driverTerraceUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerraceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1314,11 +1308,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4C4BBJ8J25;
 				INFOPLIST_FILE = driverTerraceUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerraceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

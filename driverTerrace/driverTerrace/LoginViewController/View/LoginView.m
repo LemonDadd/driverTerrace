@@ -9,6 +9,7 @@
 #import "LoginView.h"
 #import "LoginTextView.h"
 #import "RegisterViewController.h"
+#import "ResetPassViewController.h"
 
 @interface LoginView ()<UITextFieldDelegate>
 
@@ -243,7 +244,9 @@
     
     [AllRequest requestDriverLoginByPhone:self.userText.textField.text password:self.passText.textField.text key:_loginChange?2:1 request:^(UserInfoModel * _Nonnull message, NSString * _Nonnull errorMsg) {
         if (message) {
-            [message saveUserInfoClass];
+            [message saveUserInfoModel];
+            //首页刷新界面
+            [[NSNotificationCenter defaultCenter]postNotificationName:kGetUnderwayOrder object:nil];
             [self.viewController dismissViewControllerAnimated:YES completion:nil];
         } else {
             [CustomView alertMessage:errorMsg view:self];
@@ -275,7 +278,8 @@
 
 //忘记密码
 - (void)forgetBtnEvent {
-    
+    ResetPassViewController *vc= [ResetPassViewController new];
+    [self.viewController.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)sendCode {

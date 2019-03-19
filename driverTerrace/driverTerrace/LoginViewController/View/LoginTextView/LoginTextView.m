@@ -21,6 +21,7 @@
         _textField.textColor = [UIColor whiteColor];
         _textField.backgroundColor = [UIColor clearColor];
         _textField.font = [UIFont fontWithName:@"" size:14];
+        _textField.tintColor = [UIColor whiteColor];
         
         [self addSubview:_textField];
         [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -113,7 +114,7 @@
 
 -(void)setPlaceholder:(NSString *)placeholder {
     UIColor *color = [UIColor whiteColor];
-    _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{NSForegroundColorAttributeName: color}];
+    _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{NSForegroundColorAttributeName: color,NSFontAttributeName:[UIFont systemFontOfSize:14]}];
 }
 
 -(UIButton *)passBtn {

@@ -20,9 +20,9 @@
                             request:(void(^)(BOOL message,
                                              NSString *errorMsg))request {
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
-    [paramDic setObject:phone forKey:@"Phone"];
+    [paramDic setObject:phone forKey:@"phone"];
     [paramDic setObject:@(key) forKey:@"key"];
-    [HttpHelper httpDataRequest:SendPhoneCodeBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+    [HttpHelper httpDataRequestByGetMethod:SendPhoneCodeBaseUrl paramDictionary:paramDic request:^(BOOL finish, NSString *data) {
         if (finish) {
             if (data == nil) {
                 request(false, ErrorMessage);
@@ -39,6 +39,9 @@
             request(false, data);
         }
     }];
+//    [HttpHelper httpDataRequestByGetMethod:SendPhoneCodeBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+//
+//    }];
 }
 
 /**
@@ -51,9 +54,9 @@
                                               NSString *errorMsg))request {
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:phone forKey:@"phone"];
-    [paramDic setObject:phone forKey:@"password"];
-    [paramDic setObject:phone forKey:@"phoneCode"];
-    [HttpHelper httpDataRequest:DriverRegisterBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+    [paramDic setObject:password forKey:@"password"];
+    [paramDic setObject:phoneCode forKey:@"phoneCode"];
+    [HttpHelper httpDataRequestByGetMethod:DriverRegisterBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
         if (finish) {
             if (data == nil) {
                 request(nil, ErrorMessage);
@@ -82,9 +85,9 @@
                                            NSString *errorMsg))request {
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:phone forKey:@"phone"];
-    [paramDic setObject:phone forKey:@"password"];
+    [paramDic setObject:password forKey:@"password"];
     [paramDic setObject:@(key) forKey:@"key"];
-    [HttpHelper httpDataRequest:DriverLoginBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+    [HttpHelper httpDataRequestByGetMethod:DriverLoginBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
         if (finish) {
             if (data == nil) {
                 request(nil, ErrorMessage);
@@ -115,9 +118,9 @@
                                            NSString *errorMsg))request{
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:phone forKey:@"phone"];
-    [paramDic setObject:phone forKey:@"password"];
-    [paramDic setObject:phone forKey:@"phoneCode"];
-    [HttpHelper httpDataRequest:DriveralterBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+    [paramDic setObject:password forKey:@"password"];
+    [paramDic setObject:phoneCode forKey:@"phoneCode"];
+    [HttpHelper httpDataRequestByGetMethod:DriveralterBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
         if (finish) {
             if (data == nil) {
                 request(nil, ErrorMessage);
@@ -158,7 +161,7 @@
     [paramDic setObject:platenumber forKey:@"platenumber"];
     [paramDic setObject:type forKey:@"type"];
     [paramDic setObject:Id forKey:@"id"];
-    [HttpHelper httpDataRequest:AlterMessageBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+    [HttpHelper httpDataRequestByGetMethod:AlterMessageBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
         if (finish) {
             if (data == nil) {
                 request(nil, ErrorMessage);
@@ -209,7 +212,7 @@
                                                    NSString *errorMsg))request {
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:driverid forKey:@"driverid"];
-    [HttpHelper httpDataRequest:GetUnderwayOrderBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+    [HttpHelper httpDataRequestByGetMethod:GetUnderwayOrderBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
         if (finish) {
             if (data == nil) {
                 request(nil, ErrorMessage);
@@ -239,7 +242,7 @@
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:driverid forKey:@"driverid"];
     [paramDic setObject:@(pageNo) forKey:@"pageNo"];
-    [HttpHelper httpDataRequest:GetOrderListByDriveridBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+    [HttpHelper httpDataRequestByGetMethod:GetOrderListByDriveridBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
         if (finish) {
             if (data == nil) {
                 request(nil, ErrorMessage);
@@ -267,7 +270,7 @@
                                                        NSString *errorMsg))request {
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:userOrderId forKey:@"userOrderId"];
-    [HttpHelper httpDataRequest:GetPassengerInfoBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+    [HttpHelper httpDataRequestByGetMethod:GetPassengerInfoBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
         if (finish) {
             if (data == nil) {
                 request(nil, ErrorMessage);

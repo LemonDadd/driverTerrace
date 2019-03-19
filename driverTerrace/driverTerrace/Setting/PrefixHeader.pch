@@ -31,5 +31,11 @@
 #import "HttpHelper.h"
 #import "AllRequest.h"
 #import "UserInfoModel.h"
+#import "CacheDeal.h"
+#import "ACActionSheet.h"
+#import "ACMediaPickerManager.h"
+
+
+#define kGetUnderwayOrder @"getUnderwayOrder"
 
 #endif /* PrefixHeader_pch */

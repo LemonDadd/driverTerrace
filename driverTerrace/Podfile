@@ -11,4 +11,6 @@ pod 'SDWebImage'
 pod 'Masonry'
 pod 'LYEmptyView'
 pod 'HWDownSelectedView', '~> 1.0.1'
+pod 'NhfCacheDeal'                                      #NhfCacheDeal
+pod 'ACMediaFrame'
 end

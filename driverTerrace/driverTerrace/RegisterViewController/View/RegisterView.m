@@ -112,13 +112,44 @@
 }
 
 - (void)registerBtnEvent {
+    if (!self.userText.textField.text.length) {
+        [CustomView alertMessage:@"请输入手机号码" view:self];
+        return;
+    }
+    if (!self.code.textField.text.length) {
+        [CustomView alertMessage:@"请输入验证码" view:self];
+        return;
+    }
+    if (!self.passText.textField.text.length) {
+        [CustomView alertMessage:@"请输入密码" view:self];
+        return;
+    }
+    if (!self.passText1.textField.text.length) {
+        [CustomView alertMessage:@"请输入密码" view:self];
+        return;
+    }
+    
+    if (![self.passText1.textField.text isEqualToString:self.passText.textField.text]) {
+        [CustomView alertMessage:@"两次密码输入不一致" view:self];
+        return;
+    }
+    [[CustomView getInstancetype]showWaitView:@"请稍后..." byView:self];
+    [AllRequest requestDriverRegisterByPhone:self.userText.textField.text password:self.passText1.textField.text phoneCode:self.code.textField.text request:^(BOOL message, NSString * _Nonnull errorMsg) {
+        [[CustomView getInstancetype]closeHUD];
+        if (message) {
+            [CustomView alertMessage:@"注册成功" view:self];
+            [self.viewController.navigationController popViewControllerAnimated:YES];
+        } else {
+             [CustomView alertMessage:errorMsg view:self];
+        }
+    }];
     
 }
 
 - (void)sendCode {
     
     if (!self.userText.textField.text.length) {
-        [CustomView alertMessage:@"请输入验证码" view:self];
+        [CustomView alertMessage:@"请输入手机号码" view:self];
         return;
     }
     [AllRequest requestSendPhoneCodeByPhone:self.userText.textField.text Key:1 request:^(BOOL message, NSString * _Nonnull errorMsg) {

@@ -21,7 +21,9 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self toLoginViewController];
+    if ([UserInfoModel getUserInfoClass] == nil) {
+         [self toLoginViewController];
+    }
 }
 
 - (void)viewDidLoad {

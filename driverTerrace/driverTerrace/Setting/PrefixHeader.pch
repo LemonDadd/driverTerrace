@@ -30,5 +30,6 @@
 #import "HWDownSelectedView.h"
 #import "HttpHelper.h"
 #import "AllRequest.h"
+#import "UserInfoModel.h"
 
 #endif /* PrefixHeader_pch */

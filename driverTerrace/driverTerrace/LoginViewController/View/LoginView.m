@@ -10,7 +10,7 @@
 #import "LoginTextView.h"
 #import "RegisterViewController.h"
 
-@interface LoginView ()
+@interface LoginView ()<UITextFieldDelegate>
 
 @property (nonatomic, strong)LoginTextView *userText;
 @property (nonatomic, strong)LoginTextView *passText;
@@ -52,6 +52,7 @@
         
         
         _userText = [LoginTextView new];
+        _userText.textField.delegate =self;
         _userText.placeholder = @"请输入手机号";
         [self addSubview:_userText];
         [_userText mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -185,9 +186,69 @@
 }
 
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if (textField == self.userText.textField ) {
+        //这里的if时候为了获取删除操作,如果没有次if会造成当达到字数限制后删除键也不能使用的后果.
+        if (range.length == 1 && string.length == 0) {
+            return YES;
+        }
+        //so easy
+        else if (self.userText.textField.text.length >= 11) {
+           self.userText.textField.text = [textField.text substringToIndex:11];
+            return NO;
+        }
+    }
+    
+//    if (textField == self.bottomTextField && (_styleType == LoginInputStyleTypeRegisterCode || _styleType == LoginInputStyleTypeCodeLogin)) {
+//        //这里的if时候为了获取删除操作,如果没有次if会造成当达到字数限制后删除键也不能使用的后果.
+//        if (range.length == 1 && string.length == 0) {
+//            return YES;
+//        }
+//        //so easy
+//        else if (self.bottomTextField.text.length >= 6) {
+//            self.bottomTextField.text = [textField.text substringToIndex:6];
+//            return NO;
+//        }
+//    }
+    
+    return YES;
+}
+
 //登录
 - (void)login {
-    [self.viewController dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    if (_loginChange) {
+        if ( self.userText.textField.text.length != 11 || ![self checkPhoneNumInput:self.userText.textField.text]) {
+            [CustomView alertMessage:@"请输入正确的手机号" view:self];
+            return;
+        }
+        if (self.passText.textField.text.length == 0) {
+            [CustomView alertMessage:@"请输入密码" view:self];
+            return;
+        }
+        
+    } else {
+        if (!self.userText.textField.text.length) {
+            [CustomView alertMessage:@"请输入手机号" view:self];
+            return;
+        }
+        
+        if (!self.passText.textField.text.length) {
+            [CustomView alertMessage:@"请输入验证码" view:self];
+            return;
+        }
+    }
+    
+    [AllRequest requestDriverLoginByPhone:self.userText.textField.text password:self.passText.textField.text key:_loginChange?2:1 request:^(UserInfoModel * _Nonnull message, NSString * _Nonnull errorMsg) {
+        if (message) {
+            [message saveUserInfoClass];
+            [self.viewController dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            [CustomView alertMessage:errorMsg view:self];
+        }
+    }];
 }
 
 //注册
@@ -218,13 +279,39 @@
 }
 
 - (void)sendCode {
-    
     if (!self.userText.textField.text.length) {
-        [CustomView alertMessage:@"请输入验证码" view:self];
+        [CustomView alertMessage:@"请输入手机号" view:self];
         return;
     }
     [AllRequest requestSendPhoneCodeByPhone:self.userText.textField.text Key:3 request:^(BOOL message, NSString * _Nonnull errorMsg) {
     }];
+}
+
+- (BOOL)checkPhoneNumInput:(NSString *)str
+{
+    NSString * MOBILE = @"^1(3[0-9]|5[0-35-9]|8[025-9])\\d{8}$";
+    NSString * CM = @"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d)\\d{7}$";
+    NSString * CU = @"^1(3[0-2]|5[256]|8[56])\\d{8}$";
+    NSString * CT = @"^1((33|53|99|8[09])[0-9]|349)\\d{7}$";
+    // NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
+    
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM];
+    NSPredicate *regextestcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CU];
+    NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT];
+    BOOL res1 = [regextestmobile evaluateWithObject:str];
+    BOOL res2 = [regextestcm evaluateWithObject:str];
+    BOOL res3 = [regextestcu evaluateWithObject:str];
+    BOOL res4 = [regextestct evaluateWithObject:str];
+    
+    if (res1 || res2 || res3 || res4 )
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 @end

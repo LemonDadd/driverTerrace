@@ -28,7 +28,7 @@
         make.top.equalTo(@20);
         make.left.equalTo(@15);
         make.right.equalTo(@-15);
-        make.height.equalTo(@400);
+        make.height.equalTo(@350);
     }];
     
     UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];

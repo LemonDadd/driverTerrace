@@ -144,7 +144,7 @@
         }else if (component == 1){
             label.text = [NSString stringWithFormat:@"%@",self.rightArr[row]];
             if (row == self.selectRow) {
-                label.text = [NSString stringWithFormat:@".%@",self.rightArr[row]];
+                label.text = [NSString stringWithFormat:@"%@",self.rightArr[row]];
             }
         }
     }

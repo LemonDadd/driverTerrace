@@ -17,6 +17,8 @@
 @property (nonatomic, strong)UITableView *tab;
 @property (nonatomic, strong)NSArray *array;
 @property (nonatomic, strong)NSArray *parray;
+@property (nonatomic, strong)NSArray *payTypeList;
+@property (nonatomic, strong)NSArray *carTypeList;
 @property(nonatomic,strong)LZPickerView *lzPickerVIew;
 
 @end
@@ -51,6 +53,14 @@
         }
         NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"LZPickerView" owner:nil options:nil];
         self.lzPickerVIew  = views[0];
+        
+        EBDropdownListItem *item1 = [[EBDropdownListItem alloc] initWithItem:@"1" itemName:@"未支付"];
+        EBDropdownListItem *item2 = [[EBDropdownListItem alloc] initWithItem:@"2" itemName:@"已支付"];
+        EBDropdownListItem *item3 = [[EBDropdownListItem alloc] initWithItem:@"3" itemName:@"未上车"];
+        EBDropdownListItem *item4 = [[EBDropdownListItem alloc] initWithItem:@"4" itemName:@"已上车"];
+        _payTypeList = @[item1,item2];
+        _carTypeList = @[item3,item4];
+        
     }
     return self;
 }
@@ -73,9 +83,11 @@
             cell = [[AddSelectedTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddSelectedTableViewCell"];
         }
         cell.leftLabel.text = _array[indexPath.row];
-        cell.selectedView.tag = 0;
-        cell.selectedView.delegate =self;
-        cell.selectedView.listArray = @[@"未支付",@"已支付"];
+        cell.dropdownListView.tag = 0;
+        cell.dropdownListView.dataSource = _payTypeList;
+        [cell.dropdownListView setDropdownListViewSelectedBlock:^(EBDropdownListView *dropdownListView) {
+            
+        }];
         return cell;
     }else if (indexPath.row ==6){
         AddSelectedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddSelectedTableViewCell1"];
@@ -83,9 +95,11 @@
             cell = [[AddSelectedTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddSelectedTableViewCell2"];
         }
         cell.leftLabel.text = _array[indexPath.row];
-        cell.selectedView.tag = 1;
-        cell.selectedView.delegate =self;
-        cell.selectedView.listArray = @[@"未上车",@"已上车"];
+        cell.dropdownListView.tag = 1;
+        cell.dropdownListView.dataSource = _carTypeList;
+        [cell.dropdownListView setDropdownListViewSelectedBlock:^(EBDropdownListView *dropdownListView) {
+            
+        }];
         return cell;
     }else  {
         MyTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyTextFieldTableViewCell"];
@@ -125,23 +139,36 @@
     }
     
     if (indexPath.row == 4) {
-        [self.lzPickerVIew lzPickerVIewType:LZPickerViewTypeSexAndHeight];
-        self.lzPickerVIew.dataSource = @[@"1年以下",@"1年",@"2年",@"3年",@"4年",@"5年",@"6年",@"7年",@"8年",@"9年",@"10年",@"10年以上"];
-        self.lzPickerVIew.titleText = @"驾龄";
+        [self.lzPickerVIew lzPickerVIewType:LZPickerViewTypeWeigth];
+        self.lzPickerVIew.dataSource = @[[self getOneWeek],[self getTime]];
+        self.lzPickerVIew.titleText = @"乘车时间";
         self.lzPickerVIew.selectValue  = ^(NSString *value){
         };
         [self.lzPickerVIew show];
     }
 }
 
-
--(void)downSelectedView:(HWDownSelectedView *)selectedView didSelectedAtIndex:(NSIndexPath *)indexPath{
-    if (selectedView.tag == 0) {
-        
-    } else {
-        
+- (NSArray *)getOneWeek {
+    NSMutableArray *arr = [NSMutableArray array];
+    for (NSInteger i=0; i<7; i++) {
+        NSDate  *date = [NSDate jk_dateAfterDate:[NSDate date] day:i+1];
+        NSString * timeStr = [NSString stringWithFormat:@"%lu月%lu日",(unsigned long)[NSDate jk_month:date],(unsigned long)[NSDate jk_day:date]];
+        [arr addObject:timeStr];
     }
+    return [NSArray arrayWithArray:arr];
 }
+
+- (NSArray *)getTime {
+    NSMutableArray *arr = [NSMutableArray array];
+    NSDate *date = [[NSDate jk_zeroTodayDate] jk_dateByAddingMinutes:30];
+    for (int i=0; i<46; i++) {
+        date =[date jk_dateByAddingMinutes:30];
+        NSString * timeStr =[NSDate jk_stringWithDate:date format:@"HH:mm"];// [NSString stringWithFormat:@"%lu:%lu",(unsigned long)[NSDate jk_hour:date],(unsigned long)[NSDate jk_minute:date]];
+        [arr addObject:timeStr];
+    }
+    return [NSArray arrayWithArray:arr];
+}
+
 
 -(void)layoutSubviews {
     [super layoutSubviews];
@@ -188,11 +215,11 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

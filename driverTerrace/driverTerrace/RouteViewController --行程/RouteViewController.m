@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"我的行程";
+    
     _routeView = [RouteView new];
     [self.view addSubview:_routeView];
     [_routeView mas_makeConstraints:^(MASConstraintMaker *make) {

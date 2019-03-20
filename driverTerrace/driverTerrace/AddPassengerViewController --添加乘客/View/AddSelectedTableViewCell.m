@@ -23,10 +23,14 @@
             make.left.equalTo(@15);
         }];
         
-        _selectedView = [HWDownSelectedView new];
-        _selectedView.placeholder = @"请选择";
-        [self.contentView addSubview:_selectedView];
-        [_selectedView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        _dropdownListView = [EBDropdownListView new];
+        [_dropdownListView setViewBorder:0.5 borderColor:[UIColor grayColor] cornerRadius:5];
+        [self.contentView addSubview:_dropdownListView];
+//        _selectedView = [HWDownSelectedView new];
+//        _selectedView.placeholder = @"请选择";
+//        [self.contentView addSubview:_selectedView];
+        [_dropdownListView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView).offset(5);
             make.bottom.equalTo(self.contentView).offset(-5);
             make.right.equalTo(self.contentView).offset(-10);

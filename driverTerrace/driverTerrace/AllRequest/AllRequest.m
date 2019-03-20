@@ -95,8 +95,8 @@
                 NSDictionary* dic =[JsonDeal dealJson:data];
                 BOOL Code = [[dic objectForKey:@"success"] boolValue];
                 if (Code) {
-                    NSDictionary *data = dic[@"body"];
-                    UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:data];
+                    NSDictionary *modelDic = dic[@"body"][@"driver"];
+                    UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:modelDic];
                     request(model, nil);
                 } else {
                     request(nil, dic[@"msg"]);
@@ -143,7 +143,7 @@
  修改个人信息
  */
 + (void)requestAlterMessageByName:(NSString *)name
-                              sex:(NSString *)sex
+                              sex:(NSInteger)sex
                          nickname:(NSString *)nickname
                      portraitFile:(NSString *)portraitFile
                        drivingage:(NSString *)drivingage
@@ -154,7 +154,7 @@
                                            NSString *errorMsg))request {
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:name forKey:@"name"];
-    [paramDic setObject:sex forKey:@"sex"];
+    [paramDic setObject:@(sex) forKey:@"sex"];
     [paramDic setObject:nickname forKey:@"nickname"];
     [paramDic setObject:portraitFile forKey:@"portraitFile"];
     [paramDic setObject:drivingage forKey:@"drivingage"];
@@ -208,7 +208,7 @@
  进行中的订单
  */
 + (void)requestGetUnderwayOrderByDriverid:(NSString *)driverid
-                                  request:(void(^)(NSArray *message,
+                                  request:(void(^)(OrderModel *message,
                                                    NSString *errorMsg))request {
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:driverid forKey:@"driverid"];
@@ -220,8 +220,9 @@
                 NSDictionary* dic =[JsonDeal dealJson:data];
                 BOOL Code = [[dic objectForKey:@"success"] boolValue];
                 if (Code) {
-                    NSArray *data = dic[@"body"];
-                    request(data, nil);
+                    NSDictionary *data = dic[@"body"];
+                    OrderModel *model = [OrderModel mj_objectWithKeyValues:data];
+                    request(model, nil);
                 } else {
                     request(nil, dic[@"msg"]);
                 }
@@ -250,8 +251,13 @@
                 NSDictionary* dic =[JsonDeal dealJson:data];
                 BOOL Code = [[dic objectForKey:@"success"] boolValue];
                 if (Code) {
-                    NSArray *data = dic[@"body"];
-                    request(data, nil);
+                    NSArray *data = dic[@"body"][@"orderList"];
+                    NSMutableArray *ma =[NSMutableArray new];
+                    for (NSDictionary *dic in data) {
+                        RouteListModel *model = [RouteListModel mj_objectWithKeyValues:dic];
+                        [ma addObject:model];
+                    }
+                    request([ma copy], nil);
                 } else {
                     request(nil, dic[@"msg"]);
                 }

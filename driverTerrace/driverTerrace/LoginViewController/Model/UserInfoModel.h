@@ -16,6 +16,7 @@ static UserInfoModel *staticUserInfoModel;
 @interface UserInfoModel : NSObject
 
 @property (nonatomic, copy) NSString *driverid;//司机id
+@property (nonatomic, copy) NSString *portrait;
 @property (nonatomic, copy) NSString *drivernickname;//司机昵称
 @property (nonatomic, assign) NSInteger carcount;//累计发车次数
 @property (nonatomic, assign) NSInteger totalpeople;//累计载客人数

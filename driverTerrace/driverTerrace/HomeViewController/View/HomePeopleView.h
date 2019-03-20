@@ -8,9 +8,12 @@
 
 #import "BaseView.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomePeopleView : BaseView
+
+@property (nonatomic, strong)OrderModel *model;
 
 @end
 

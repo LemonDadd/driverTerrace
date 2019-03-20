@@ -20,7 +20,7 @@
 @property (nonatomic, strong)UIImageView *rightImageV;
 @property (nonatomic, strong)UIView *contentView;
 
-
+@property (nonatomic, strong)NSMutableArray *userListArray;
 
 @end
 
@@ -32,7 +32,6 @@
     if (self) {
        
         _lineLabel = [UILabel new];
-        _lineLabel.text = @"线路车: 运城市-新绛县";
         _lineLabel.font = [UIFont boldSystemFontOfSize:18];
         _lineLabel.textColor = [UIColor blackColor];
         [self addSubview:_lineLabel];
@@ -49,17 +48,15 @@
         }];
         
         _priceLabel = [UILabel new];
-        _priceLabel.text = @"170/位";
         _priceLabel.font = [UIFont systemFontOfSize:15];
         [self addSubview:_priceLabel];
         [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.leftImageV);
-            make.left.equalTo(self.leftImageV.mas_right);
+            make.left.equalTo(self.leftImageV.mas_right).offset(5);
         }];
         
         
         _timeLabel = [UILabel new];
-        _timeLabel.text = @"14:00";
         _timeLabel.font = [UIFont systemFontOfSize:15];
         [self addSubview:_timeLabel];
         [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,7 +70,7 @@
         [self addSubview:_rightImageV];
         [_rightImageV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.timeLabel);
-            make.right.equalTo(self.timeLabel.mas_left);
+            make.right.equalTo(self.timeLabel.mas_left).offset(-5);
         }];
         
         UIView *line= [UIView new];
@@ -93,9 +90,6 @@
             make.bottom.equalTo(self).offset(-5);
             make.top.equalTo(line.mas_bottom);
         }];
-        
-        
-        [self createUser];
         [self layoutIfNeeded];
         
     }
@@ -126,7 +120,8 @@
         make.height.equalTo(@.5);
     }];
     
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<_userListArray.count; i++) {
+        OrderListModel *model = _userListArray[i];
         HomeUserView *view = [HomeUserView new];
         UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userEvente:)];
         view.tag = i;
@@ -188,6 +183,41 @@
         [alert layoutIfNeeded];
     }
    
+}
+
+-(void)setModel:(OrderModel *)model {
+    _model = model;
+    _lineLabel.text = [NSString stringWithFormat:@"线路车%@",model.circuit.circuitname];
+    _priceLabel.text = [NSString stringWithFormat:@"%f/位", model.circuit.price];
+    _timeLabel.text = model.circuit.starttime;
+    
+    
+    //用户逻辑
+    _userListArray = [NSMutableArray new];
+    for (int i=0; i<model.orderList.count; i++) {
+        //用户
+        OrderListModel *user = [OrderListModel mj_objectWithKeyValues:model.orderList[i]];
+        user.type = OrderTypeUser;
+        [_userListArray addObject:user];
+        if (user.personNum >1) {
+            //同行
+            for (int j=0; i<user.personNum-1; j++) {
+                 OrderListModel *fellow = [OrderListModel mj_objectWithKeyValues:model.orderList[i]];
+                 fellow.type = OrderTypeFellow;
+                [_userListArray addObject:fellow];
+            }
+        }
+    }
+    if (_userListArray.count<4) {
+        //添加乘客
+        for (int i=0; i<4-_userListArray.count; i++) {
+            OrderListModel *user = [OrderListModel new];
+            user.type =OrderTypeNone;
+            [_userListArray addObject:user];
+        }
+    }
+    
+    [self createUser];
 }
 
 -(void)layoutSubviews {

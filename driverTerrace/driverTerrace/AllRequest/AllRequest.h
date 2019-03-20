@@ -8,6 +8,8 @@
 
 #import "JsonDeal.h"
 #import "UserInfoModel.h"
+#import "OrderModel.h"
+#import "RouteListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -52,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
  修改个人信息
  */
 + (void)requestAlterMessageByName:(NSString *)name
-                              sex:(NSString *)sex
+                              sex:(NSInteger)sex
                          nickname:(NSString *)nickname
                      portraitFile:(NSString *)portraitFile
                        drivingage:(NSString *)drivingage
@@ -86,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
  进行中的订单
  */
 + (void)requestGetUnderwayOrderByDriverid:(NSString *)driverid
-                                  request:(void(^)(NSArray *message,
+                                  request:(void(^)(OrderModel *message,
                                                    NSString *errorMsg))request;
 
 /**

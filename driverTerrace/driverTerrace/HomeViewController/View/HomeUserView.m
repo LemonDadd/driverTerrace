@@ -153,4 +153,53 @@
     return self;
 }
 
+-(void)setModel:(OrderListModel *)model {
+    
+    [_picImageV sd_setImageWithURL:[NSURL URLWithString:model.user.portrait]];
+    _name.text = model.user.nickname;
+    _count.text = [NSString stringWithFormat:@"%ld人",(long)model.personNum];
+    
+    
+    
+    if (model.payStatus == 2) {
+        _payLabel.text = @"未支付";
+    } else {
+        _payLabel.text = @"已支付";
+    }
+    
+    switch (model.orderStatus) {
+        case 0:
+            //送程中
+            break;
+        case 2:
+            //已完成
+            break;
+        case 3:
+            //已超时
+            break;
+        case 4:
+            //已取消
+            break;
+        case 5:
+            //待支付
+            break;
+        case 6:
+            //正在派车
+            break;
+        case 7:
+            //正在接客
+            break;
+        case 8:
+            //确认到达目的地
+            break;
+        case 9:
+            //已到达接乘点
+            break;
+        default:
+            break;
+    }
+    
+    
+}
+
 @end

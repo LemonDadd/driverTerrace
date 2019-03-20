@@ -64,6 +64,11 @@
         }
         NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"LZPickerView" owner:nil options:nil];
         self.lzPickerVIew  = views[0];
+        
+        [[SDWebImageManager sharedManager]loadImageWithURL:[NSURL URLWithString:[UserInfoModel getUserInfoModel].portrait] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            self->_pic = image;
+        }];
     }
     return self;
 }
@@ -92,6 +97,8 @@
         cell.leftLabel.text = _array[indexPath.row];
         if (_pic) {
             cell.imageV.image = _pic;
+        }else {
+            [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel getUserInfoModel].portrait]];
         }
         return cell;
     } else {
@@ -109,6 +116,7 @@
         
         switch (indexPath.row) {
             case 1:
+                cell.textField.text = [UserInfoModel getUserInfoModel].drivernickname;
                 self.name = cell.textField;
                 break;
             case 2:
@@ -175,6 +183,11 @@
 #pragma mark
 -(void)save {
     
+    if (!_pic) {
+        [CustomView alertMessage:@"请选择头像" view:self];
+        return;
+    }
+    
     if (!self.name.text.length) {
         [CustomView alertMessage:@"请输入昵称" view:self];
         return;
@@ -207,9 +220,12 @@
         [CustomView alertMessage:@"请选择驾龄" view:self];
         return;
     }
-    [AllRequest requestAlterMessageByName:self.name.text sex:self.age.text nickname:self.name.text portraitFile:[self imageToString:_pic] drivingage:self.age.text platenumber:self.plateNumber.text type:self.car.text id:[UserInfoModel getUserInfoModel].driverid request:^(BOOL message, NSString * _Nonnull errorMsg) {
+   
+    [AllRequest requestAlterMessageByName:self.name.text sex:[self.sex.text isEqualToString:@"男"]?1:2 nickname:self.name.text portraitFile:[self imageToString:_pic] drivingage:self.age.text  platenumber:self.plateNumber.text type:self.car.text id:[UserInfoModel getUserInfoModel].driverid request:^(BOOL message, NSString * _Nonnull errorMsg) {
         if (message) {
             
+        } else {
+            [CustomView alertMessage:errorMsg view:self];
         }
     }];
     
@@ -219,21 +235,32 @@
 #pragma mark - ACActionSheet delegate
 - (void)actionSheet:(ACActionSheet *)actionSheet didClickedButtonAtIndex:(NSInteger)buttonIndex {
     MJWeakSelf;
-    _manager = [[ACMediaPickerManager alloc]init];
-    _manager.didFinishPickingBlock = ^(NSArray<ACMediaModel *> *list) {
-        for (ACMediaModel*model in list) {
-            weakSelf.pic = model.originalImage;
-        }
-        [weakSelf.tab reloadData];
-    };
-    _manager.maxImageSelected =1;
+    
     if (buttonIndex == 0) {
-         _manager.pickerSource = ACMediaPickerSourceFromCamera;
+        _manager = [[ACMediaPickerManager alloc]init];
+        _manager.didFinishPickingBlock = ^(NSArray<ACMediaModel *> *list) {
+            for (ACMediaModel*model in list) {
+                weakSelf.pic = model.originalImage;
+            }
+            [weakSelf.tab reloadData];
+        };
+        _manager.maxImageSelected =1;
+        _manager.pickerSource = ACMediaPickerSourceFromCamera;
+        [_manager openCustomAlbum];
     }
     if (buttonIndex == 1) {
-        _manager.pickerSource =ACMediaPickerSourceFromAlbum ;
+        _manager = [[ACMediaPickerManager alloc]init];
+        _manager.didFinishPickingBlock = ^(NSArray<ACMediaModel *> *list) {
+            for (ACMediaModel*model in list) {
+                weakSelf.pic = model.originalImage;
+            }
+            [weakSelf.tab reloadData];
+        };
+        _manager.maxImageSelected =1;
+        _manager.pickerSource = ACMediaPickerSourceFromAlbum;
+        [_manager openCustomAlbum];
     }
-    [_manager openCustomAlbum];
+  
 }
 
 - (NSString *)imageToString:(id)image {
@@ -241,7 +268,7 @@
     if ([image isKindOfClass:[NSString class]]) {
         return @"";
     }else {
-        NSData *imagedata = [self resetSizeOfImageData:image maxSize:50];
+        NSData *imagedata = [self resetSizeOfImageData:image maxSize:10];
         NSString *image64 = [imagedata base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
         return image64;
         

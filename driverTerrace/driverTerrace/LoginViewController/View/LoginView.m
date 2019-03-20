@@ -218,8 +218,6 @@
 
 //登录
 - (void)login {
-    
-    
     if (_loginChange) {
         if ( self.userText.textField.text.length != 11 || ![self checkPhoneNumInput:self.userText.textField.text]) {
             [CustomView alertMessage:@"请输入正确的手机号" view:self];

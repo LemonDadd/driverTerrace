@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28751140572E12D2109013FA /* libPods-driverTerrace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FD2875E51B8A57DE8B8148 /* libPods-driverTerrace.a */; };
+		B01CB32D2242482200A9F01C /* RouteListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B01CB32C2242482200A9F01C /* RouteListModel.m */; };
 		B0474D7F223B9ED6003C6AEE /* HomeUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0474D7E223B9ED6003C6AEE /* HomeUserView.m */; };
 		B0474D83223BAEED003C6AEE /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0474D82223BAEED003C6AEE /* CityViewController.m */; };
 		DA2B1B5C223CC5CB006CC5D3 /* AddPassengerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2B1B5B223CC5CB006CC5D3 /* AddPassengerView.m */; };
@@ -90,6 +91,8 @@
 		22FD2875E51B8A57DE8B8148 /* libPods-driverTerrace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-driverTerrace.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7B1639EF61C1F0557DEDA1 /* Pods-driverTerrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-driverTerrace.release.xcconfig"; path = "Pods/Target Support Files/Pods-driverTerrace/Pods-driverTerrace.release.xcconfig"; sourceTree = "<group>"; };
 		34A57B9EC30AD0E5F955AF52 /* Pods-driverTerrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-driverTerrace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-driverTerrace/Pods-driverTerrace.debug.xcconfig"; sourceTree = "<group>"; };
+		B01CB32B2242482200A9F01C /* RouteListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteListModel.h; sourceTree = "<group>"; };
+		B01CB32C2242482200A9F01C /* RouteListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteListModel.m; sourceTree = "<group>"; };
 		B0474D7D223B9ED6003C6AEE /* HomeUserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeUserView.h; sourceTree = "<group>"; };
 		B0474D7E223B9ED6003C6AEE /* HomeUserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeUserView.m; sourceTree = "<group>"; };
 		B0474D81223BAEED003C6AEE /* CityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityViewController.h; sourceTree = "<group>"; };
@@ -245,6 +248,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B01CB32A2242480C00A9F01C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B01CB32B2242482200A9F01C /* RouteListModel.h */,
+				B01CB32C2242482200A9F01C /* RouteListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B0474D80223BAED2003C6AEE /* CityViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,7 +386,6 @@
 			isa = PBXGroup;
 			children = (
 				DAA08F2C223944E900E944FE /* Model */,
-				DAA08F2B2239431500E944FE /* Request */,
 				DAA08F292239430E00E944FE /* View */,
 				DAA08F7122394D3000E944FE /* HomeViewController.h */,
 				DAA08F7222394D3000E944FE /* HomeViewController.m */,
@@ -400,13 +411,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		DAA08F2B2239431500E944FE /* Request */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Request;
-			sourceTree = "<group>";
-		};
 		DAA08F2C223944E900E944FE /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,20 +423,12 @@
 		DAA08F2D223949F400E944FE /* RouteViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DAA08F2F223949F400E944FE /* Model */,
+				B01CB32A2242480C00A9F01C /* Model */,
 				DAA08F30223949F400E944FE /* View */,
-				DAA08F31223949F400E944FE /* Request */,
 				DAA08F87223AB7AC00E944FE /* RouteViewController.h */,
 				DAA08F88223AB7AC00E944FE /* RouteViewController.m */,
 			);
 			path = RouteViewController;
-			sourceTree = "<group>";
-		};
-		DAA08F2F223949F400E944FE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		DAA08F30223949F400E944FE /* View */ = {
@@ -443,13 +439,6 @@
 				DAA08F8E223AB7D000E944FE /* RouteView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		DAA08F31223949F400E944FE /* Request */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Request;
 			sourceTree = "<group>";
 		};
 		DAA08F32223949F400E944FE /* ResetPassViewController */ = {
@@ -1032,6 +1021,7 @@
 				DA2B1B73223E5CC8006CC5D3 /* HomeCarView.m in Sources */,
 				DAA08F83223A945200E944FE /* HomeTopView.m in Sources */,
 				DAC779F5223FC261002B6C0E /* NHFUpLoadImages.m in Sources */,
+				B01CB32D2242482200A9F01C /* RouteListModel.m in Sources */,
 				DAA08FC5223C82E800E944FE /* RegisterViewController.m in Sources */,
 				B0474D83223BAEED003C6AEE /* CityViewController.m in Sources */,
 				DA2B1B77223E6155006CC5D3 /* LWDPageControl.m in Sources */,
@@ -1225,15 +1215,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52HKCP4F62;
+				DEVELOPMENT_TEAM = 8D2PV5J5YR;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/driverTerrace/Setting/PrefixHeader.pch";
 				INFOPLIST_FILE = driverTerrace/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerrace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Debug;
@@ -1245,15 +1239,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52HKCP4F62;
+				DEVELOPMENT_TEAM = 8D2PV5J5YR;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/driverTerrace/Setting/PrefixHeader.pch";
 				INFOPLIST_FILE = driverTerrace/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerrace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Release;
@@ -1265,7 +1263,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4C4BBJ8J25;
 				INFOPLIST_FILE = driverTerraceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerraceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1280,7 +1282,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4C4BBJ8J25;
 				INFOPLIST_FILE = driverTerraceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerraceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1294,7 +1300,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4C4BBJ8J25;
 				INFOPLIST_FILE = driverTerraceUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerraceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1308,7 +1318,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4C4BBJ8J25;
 				INFOPLIST_FILE = driverTerraceUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fx.driverTerraceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

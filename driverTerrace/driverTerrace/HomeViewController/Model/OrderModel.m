@@ -11,3 +11,15 @@
 @implementation OrderModel
 
 @end
+
+@implementation CircuitModel
+
+@end
+
+@implementation OrderListModel
+
+@end
+
+@implementation OrderUserModel
+
+@end

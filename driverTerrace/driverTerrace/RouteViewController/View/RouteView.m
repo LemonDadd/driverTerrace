@@ -12,6 +12,10 @@
 @interface RouteView()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView *tab;
+@property (nonatomic, strong)NSMutableArray *allResource;
+@property (nonatomic, strong)NSMutableArray *orderOverListArray;
+@property (nonatomic, strong)NSMutableArray *orderListArray;
+@property (nonatomic, assign) NSInteger page;
 
 @end
 
@@ -33,6 +37,9 @@
         [_tab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
+        
+        [self addHistoryData];
+        //[self upPull];
     }
     return self;
 }
@@ -43,21 +50,49 @@
     [tableView setTableFooterView:view];
 }
 
+/**
+ *  刷新数据
+ */
+- (void)addHistoryData{
+    
+    __weak __typeof(self) weakSelf = self;
+    self.tab.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [weakSelf load];
+    }];
+    // 马上进入刷新状态
+    [self.tab.mj_header beginRefreshing];
+}
+
+- (void)upPull {
+    __weak __typeof(self) weakSelf = self;
+    self.tab.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.page++;
+        [weakSelf load];
+    }];
+}
+
+- (void)load {
+    [AllRequest requestGetOrderListByDriveridByDriverid:[UserInfoModel getUserInfoModel].driverid pageNo:_page request:^(NSArray * _Nonnull message, NSString * _Nonnull errorMsg) {
+        if (message) {
+            [self update:message];
+        }
+    }];
+    
+}
+
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 1;
+        return _orderListArray.count;
     } else {
-        return 5;
+        return _orderOverListArray.count;
     }
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section{
-//    return CGFLOAT_MIN;
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
@@ -68,6 +103,13 @@
     if (!cell) {
         cell = [[RouteViewTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RouteViewTableViewCell"];
     };
+    
+    if (indexPath.section == 0) {
+        cell.model =_orderListArray[indexPath.row];
+    } else {
+        cell.model = _orderOverListArray[indexPath.row];
+    }
+    
     return cell;
 }
 
@@ -79,6 +121,33 @@
     } else {
         return @"已完成订单";
     }
+}
+
+- (void)update:(NSArray *)list {
+    
+    if (self.page == 1) {
+        [self.allResource removeAllObjects];
+    }
+    [self.allResource addObjectsFromArray:list];
+    _orderListArray = [NSMutableArray new];
+    _orderOverListArray = [NSMutableArray new];
+    for (RouteListModel *model in self.allResource) {
+        if (model.orderState == 1) {
+            [_orderOverListArray addObject:model];
+        }
+        if (model.orderState == 2) {
+             [_orderListArray addObject:model];
+        }
+    }
+    [self.tab.mj_header endRefreshing];
+    [self.tab reloadData];
+}
+
+- (NSMutableArray *)allResource {
+    if (!_allResource) {
+        _allResource = [NSMutableArray array];
+    }
+    return _allResource;
 }
 
 @end

@@ -23,7 +23,10 @@
     [super viewWillAppear:animated];
     if ([UserInfoModel getUserInfoModel] == nil) {
          [self toLoginViewController];
+    } else {
+         [self getUnderwayOrder];
     }
+    
 }
 
 - (void)viewDidLoad {
@@ -57,12 +60,19 @@
         make.top.equalTo(self.homeTopView.mas_bottom).offset(10);
         make.bottom.equalTo(self.view).offset(-30);
     }];
-    
 }
 
 
 - (void)getUnderwayOrder {
-    [AllRequest requestGetUnderwayOrderByDriverid:[UserInfoModel getUserInfoModel].driverid request:^(NSArray * _Nonnull message, NSString * _Nonnull errorMsg) {
+    [_homeTopView reloadData];
+    [AllRequest requestGetUnderwayOrderByDriverid:[UserInfoModel getUserInfoModel].driverid request:^(OrderModel * _Nonnull message, NSString * _Nonnull errorMsg) {
+        if (message) {
+            self.homePeopleView.hidden = NO;
+            self.homePeopleView.model = message;
+        } else {
+            self.homePeopleView.hidden = YES;
+        }
+        
     }];
 }
 

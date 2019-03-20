@@ -38,7 +38,7 @@
 }
 
 - (void)save {
-    
+    [_myView save];
 }
 
 /*

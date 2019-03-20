@@ -51,7 +51,7 @@
         }];
         
         _countLabel = [UILabel new];
-        _countLabel.text = @"累计发车:500次";
+       
         _countLabel.textColor = kColorWithHex(0x9F9F9F);
         _countLabel.font = [UIFont systemFontOfSize:13];
         [self addSubview:_countLabel];
@@ -61,7 +61,6 @@
         }];
         
         _peopleLabel = [UILabel new];
-        _peopleLabel.text = @"接送:1656人";
         _peopleLabel.textColor = kColorWithHex(0x9F9F9F);
         _peopleLabel.font = [UIFont systemFontOfSize:13];
         [self addSubview:_peopleLabel];
@@ -111,10 +110,18 @@
             }
            
         });
-        
+        [self reloadData];
         [self layoutIfNeeded];
     }
     return self;
+}
+
+- (void)reloadData {
+    UserInfoModel *model =[UserInfoModel getUserInfoModel];
+    [_headerView sd_setImageWithURL:[NSURL URLWithString:model.portrait]];
+    _nameLabel.text =model.drivernickname;
+    _countLabel.text =[NSString stringWithFormat:@"累计发车:%ld次",(long)model.carcount];
+    _peopleLabel.text =[NSString stringWithFormat: @"接送:%ld人",(long)model.totalpeople];
 }
 
 -(void)layoutSubviews {

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RouteViewTableViewCell : UITableViewCell
 
+@property (nonatomic, strong)RouteListModel *model;
+
 @end
 
 NS_ASSUME_NONNULL_END

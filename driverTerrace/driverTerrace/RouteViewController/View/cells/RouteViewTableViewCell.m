@@ -43,7 +43,7 @@
         [self.contentView addSubview:bg];
         [bg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView);
-            make.bottom.equalTo(self.contentView);
+            make.bottom.equalTo(self.contentView).offset(-5);
             make.left.equalTo(@15);
             make.right.equalTo(@-15);
         }];
@@ -89,7 +89,7 @@
         [bg addSubview:_sitLabel];
         [_sitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.sitImage);
-            make.left.equalTo(self.sitImage.mas_right);
+            make.left.equalTo(self.sitImage.mas_right).offset(5);
         }];
         
         
@@ -111,17 +111,25 @@
         }];
         
         _timeLabel = [UILabel new];
-        _timeLabel.text = @"￥170.00/座";
         _timeLabel.font = [UIFont systemFontOfSize:12];
         [bg addSubview:_timeLabel];
         [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.timeImage);
-            make.left.equalTo(self.timeImage.mas_right);
+            make.left.equalTo(self.timeImage.mas_right).offset(5);
             make.bottom.equalTo(bg).offset(-8);
         }];
         
     }
     return self;
+}
+
+-(void)setModel:(RouteListModel *)model {
+    _model = model;
+    _lineLabel.text = model.circuitname;
+    _rightLabel.text = model.orderState == 1?@"已完成":@"进行中";
+    _rightLabel.textColor = model.orderState == 1?[UIColor groupTableViewBackgroundColor]:kRGBColor(37, 124, 229);
+    _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",model.startDate,model.endDate];
+    _priceLabel.text = [NSString stringWithFormat:@"￥%.2f/座",model.price];
 }
 
 - (void)awakeFromNib {

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeUserView : BaseView
 
+@property (nonatomic, strong)OrderListModel *model;
+
 @end
 
 NS_ASSUME_NONNULL_END

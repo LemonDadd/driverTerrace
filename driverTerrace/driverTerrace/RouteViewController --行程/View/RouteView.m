@@ -8,6 +8,7 @@
 
 #import "RouteView.h"
 #import "RouteViewTableViewCell.h"
+#import "RouteDetailViewController.h"
 
 @interface RouteView()<UITableViewDelegate,UITableViewDataSource>
 
@@ -31,7 +32,7 @@
         _tab.dataSource =self;
         _tab.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tab.sectionFooterHeight = 0;
-        _tab.sectionHeaderHeight = 40;
+        _tab.sectionHeaderHeight = 0;
         [self addSubview:_tab];
         [self setExtraCellLineHidden:_tab];
         [_tab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -94,6 +95,14 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return _orderListArray.count?40:CGFLOAT_MIN;
+    } else {
+        return _orderOverListArray.count?40:CGFLOAT_MIN;
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
 }
@@ -111,6 +120,23 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        RouteListModel *model =_orderListArray[indexPath.row];
+        RouteDetailViewController *vc = [RouteDetailViewController new];
+        vc.model = model;
+        vc.title = @"进行中";
+        [self.viewController.navigationController pushViewController:vc animated:YES];
+    } else {
+        RouteListModel *model = _orderOverListArray[indexPath.row];
+         RouteDetailViewController *vc = [RouteDetailViewController new];
+        vc.model = model;
+        vc.title = @"已完成";
+        [self.viewController.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 //添加TableView头视图标题
@@ -131,6 +157,7 @@
     [self.allResource addObjectsFromArray:list];
     _orderListArray = [NSMutableArray new];
     _orderOverListArray = [NSMutableArray new];
+    
     for (RouteListModel *model in self.allResource) {
         if (model.orderState == 1) {
             [_orderOverListArray addObject:model];

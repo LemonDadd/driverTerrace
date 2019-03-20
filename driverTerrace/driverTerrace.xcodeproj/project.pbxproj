@@ -68,6 +68,10 @@
 		DAC77A022240077C002B6C0E /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A012240077C002B6C0E /* RegisterView.m */; };
 		DAC77A0722413FAA002B6C0E /* ACActionSheet.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DAC77A0522413FAA002B6C0E /* ACActionSheet.bundle */; };
 		DAC77A0822413FAA002B6C0E /* ACActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A0622413FAA002B6C0E /* ACActionSheet.m */; };
+		DAC77A0D2242838F002B6C0E /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A0C2242838F002B6C0E /* MyWalletViewController.m */; };
+		DAC77A1422428C87002B6C0E /* MyWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A1322428C87002B6C0E /* MyWalletView.m */; };
+		DAC77A1822428EAF002B6C0E /* MyWalletViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A1622428EAF002B6C0E /* MyWalletViewTableViewCell.m */; };
+		DAC77A1922428EAF002B6C0E /* MyWalletViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC77A1722428EAF002B6C0E /* MyWalletViewTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +216,13 @@
 		DAC77A0422413FAA002B6C0E /* ACActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACActionSheet.h; sourceTree = "<group>"; };
 		DAC77A0522413FAA002B6C0E /* ACActionSheet.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ACActionSheet.bundle; sourceTree = "<group>"; };
 		DAC77A0622413FAA002B6C0E /* ACActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACActionSheet.m; sourceTree = "<group>"; };
+		DAC77A0B2242838F002B6C0E /* MyWalletViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWalletViewController.h; sourceTree = "<group>"; };
+		DAC77A0C2242838F002B6C0E /* MyWalletViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewController.m; sourceTree = "<group>"; };
+		DAC77A1222428C87002B6C0E /* MyWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWalletView.h; sourceTree = "<group>"; };
+		DAC77A1322428C87002B6C0E /* MyWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWalletView.m; sourceTree = "<group>"; };
+		DAC77A1522428EAF002B6C0E /* MyWalletViewTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWalletViewTableViewCell.h; sourceTree = "<group>"; };
+		DAC77A1622428EAF002B6C0E /* MyWalletViewTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewTableViewCell.m; sourceTree = "<group>"; };
+		DAC77A1722428EAF002B6C0E /* MyWalletViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletViewTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,13 +268,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B0474D80223BAED2003C6AEE /* CityViewController */ = {
+		B0474D80223BAED2003C6AEE /* CityViewController -- 城市 */ = {
 			isa = PBXGroup;
 			children = (
 				B0474D81223BAEED003C6AEE /* CityViewController.h */,
 				B0474D82223BAEED003C6AEE /* CityViewController.m */,
 			);
-			path = CityViewController;
+			path = "CityViewController -- 城市";
 			sourceTree = "<group>";
 		};
 		C159C779D83309567C2063DF /* Pods */ = {
@@ -337,20 +348,22 @@
 		DAA08EF22239406300E944FE /* driverTerrace */ = {
 			isa = PBXGroup;
 			children = (
+				DAC77A0A2242834F002B6C0E /* New Group1 */,
 				DAC779E0223FC207002B6C0E /* AllRequest */,
 				DAA08FAF223C12E700E944FE /* Category */,
 				DAA08F5E22394CCE00E944FE /* Base */,
 				DAA08F5A22394A2700E944FE /* Setting */,
-				DAA08F4B223949F500E944FE /* LoginViewController */,
-				DAA08F3C223949F500E944FE /* RegisterViewController */,
-				DAA08F32223949F400E944FE /* ResetPassViewController */,
-				DAA08F55223949F500E944FE /* MyViewController */,
-				DAA08F46223949F500E944FE /* AddPassengerViewController */,
-				B0474D80223BAED2003C6AEE /* CityViewController */,
-				DAA08F37223949F500E944FE /* RouteDetailViewController */,
-				DAA08F2D223949F400E944FE /* RouteViewController */,
-				DAA08F41223949F500E944FE /* SettingViewController */,
-				DAA08F27223942FD00E944FE /* HomeViewController */,
+				DAA08F4B223949F500E944FE /* LoginViewController -- 登录 */,
+				DAA08F3C223949F500E944FE /* RegisterViewController -- 注册 */,
+				DAA08F32223949F400E944FE /* ResetPassViewController -- 修改密码 */,
+				DAA08F55223949F500E944FE /* MyViewController -- 我的资料 */,
+				DAA08F46223949F500E944FE /* AddPassengerViewController --添加乘客 */,
+				DAC77A092242834C002B6C0E /* MyWalletViewController -- 我的钱包 */,
+				B0474D80223BAED2003C6AEE /* CityViewController -- 城市 */,
+				DAA08F37223949F500E944FE /* RouteDetailViewController --行程详情 */,
+				DAA08F2D223949F400E944FE /* RouteViewController --行程 */,
+				DAA08F41223949F500E944FE /* SettingViewController -- 设置 */,
+				DAA08F27223942FD00E944FE /* HomeViewController -- 首页 */,
 				DAA08EF32239406300E944FE /* AppDelegate.h */,
 				DAA08EF42239406300E944FE /* AppDelegate.m */,
 				DAA08EF62239406300E944FE /* ViewController.h */,
@@ -382,7 +395,7 @@
 			path = driverTerraceUITests;
 			sourceTree = "<group>";
 		};
-		DAA08F27223942FD00E944FE /* HomeViewController */ = {
+		DAA08F27223942FD00E944FE /* HomeViewController -- 首页 */ = {
 			isa = PBXGroup;
 			children = (
 				DAA08F2C223944E900E944FE /* Model */,
@@ -390,7 +403,7 @@
 				DAA08F7122394D3000E944FE /* HomeViewController.h */,
 				DAA08F7222394D3000E944FE /* HomeViewController.m */,
 			);
-			path = HomeViewController;
+			path = "HomeViewController -- 首页";
 			sourceTree = "<group>";
 		};
 		DAA08F292239430E00E944FE /* View */ = {
@@ -420,7 +433,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		DAA08F2D223949F400E944FE /* RouteViewController */ = {
+		DAA08F2D223949F400E944FE /* RouteViewController --行程 */ = {
 			isa = PBXGroup;
 			children = (
 				B01CB32A2242480C00A9F01C /* Model */,
@@ -428,7 +441,7 @@
 				DAA08F87223AB7AC00E944FE /* RouteViewController.h */,
 				DAA08F88223AB7AC00E944FE /* RouteViewController.m */,
 			);
-			path = RouteViewController;
+			path = "RouteViewController --行程";
 			sourceTree = "<group>";
 		};
 		DAA08F30223949F400E944FE /* View */ = {
@@ -441,7 +454,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		DAA08F32223949F400E944FE /* ResetPassViewController */ = {
+		DAA08F32223949F400E944FE /* ResetPassViewController -- 修改密码 */ = {
 			isa = PBXGroup;
 			children = (
 				DAA08F34223949F400E944FE /* Model */,
@@ -450,7 +463,7 @@
 				DA2B1B63223D12E3006CC5D3 /* ResetPassViewController.h */,
 				DA2B1B64223D12E3006CC5D3 /* ResetPassViewController.m */,
 			);
-			path = ResetPassViewController;
+			path = "ResetPassViewController -- 修改密码";
 			sourceTree = "<group>";
 		};
 		DAA08F34223949F400E944FE /* Model */ = {
@@ -474,7 +487,7 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
-		DAA08F37223949F500E944FE /* RouteDetailViewController */ = {
+		DAA08F37223949F500E944FE /* RouteDetailViewController --行程详情 */ = {
 			isa = PBXGroup;
 			children = (
 				DAA08F39223949F500E944FE /* Model */,
@@ -483,7 +496,7 @@
 				DAA08F8A223AB7BB00E944FE /* RouteDetailViewController.h */,
 				DAA08F8B223AB7BB00E944FE /* RouteDetailViewController.m */,
 			);
-			path = RouteDetailViewController;
+			path = "RouteDetailViewController --行程详情";
 			sourceTree = "<group>";
 		};
 		DAA08F39223949F500E944FE /* Model */ = {
@@ -510,14 +523,14 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
-		DAA08F3C223949F500E944FE /* RegisterViewController */ = {
+		DAA08F3C223949F500E944FE /* RegisterViewController -- 注册 */ = {
 			isa = PBXGroup;
 			children = (
 				DAA08F3F223949F500E944FE /* View */,
 				DAA08FC3223C82E800E944FE /* RegisterViewController.h */,
 				DAA08FC4223C82E800E944FE /* RegisterViewController.m */,
 			);
-			path = RegisterViewController;
+			path = "RegisterViewController -- 注册";
 			sourceTree = "<group>";
 		};
 		DAA08F3F223949F500E944FE /* View */ = {
@@ -529,7 +542,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		DAA08F41223949F500E944FE /* SettingViewController */ = {
+		DAA08F41223949F500E944FE /* SettingViewController -- 设置 */ = {
 			isa = PBXGroup;
 			children = (
 				DA2B1B66223D58D9006CC5D3 /* lawViewController */,
@@ -539,7 +552,7 @@
 				DAA08FA6223BFB3200E944FE /* SettingViewController.h */,
 				DAA08FA7223BFB3200E944FE /* SettingViewController.m */,
 			);
-			path = SettingViewController;
+			path = "SettingViewController -- 设置";
 			sourceTree = "<group>";
 		};
 		DAA08F43223949F500E944FE /* Model */ = {
@@ -565,7 +578,7 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
-		DAA08F46223949F500E944FE /* AddPassengerViewController */ = {
+		DAA08F46223949F500E944FE /* AddPassengerViewController --添加乘客 */ = {
 			isa = PBXGroup;
 			children = (
 				DAA08F48223949F500E944FE /* Model */,
@@ -574,7 +587,7 @@
 				DAA08FBD223C1C0D00E944FE /* AddPassengerViewController.h */,
 				DAA08FBE223C1C0D00E944FE /* AddPassengerViewController.m */,
 			);
-			path = AddPassengerViewController;
+			path = "AddPassengerViewController --添加乘客";
 			sourceTree = "<group>";
 		};
 		DAA08F48223949F500E944FE /* Model */ = {
@@ -601,7 +614,7 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
-		DAA08F4B223949F500E944FE /* LoginViewController */ = {
+		DAA08F4B223949F500E944FE /* LoginViewController -- 登录 */ = {
 			isa = PBXGroup;
 			children = (
 				DAA08F4D223949F500E944FE /* Model */,
@@ -609,7 +622,7 @@
 				DAA08F7A2239508000E944FE /* LoginViewController.h */,
 				DAA08F7B2239508000E944FE /* LoginViewController.m */,
 			);
-			path = LoginViewController;
+			path = "LoginViewController -- 登录";
 			sourceTree = "<group>";
 		};
 		DAA08F4D223949F500E944FE /* Model */ = {
@@ -631,7 +644,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		DAA08F55223949F500E944FE /* MyViewController */ = {
+		DAA08F55223949F500E944FE /* MyViewController -- 我的资料 */ = {
 			isa = PBXGroup;
 			children = (
 				DAA08F57223949F500E944FE /* Model */,
@@ -639,7 +652,7 @@
 				DAA08FA3223BFAA000E944FE /* MyViewController.h */,
 				DAA08FA4223BFAA000E944FE /* MyViewController.m */,
 			);
-			path = MyViewController;
+			path = "MyViewController -- 我的资料";
 			sourceTree = "<group>";
 		};
 		DAA08F57223949F500E944FE /* Model */ = {
@@ -810,6 +823,35 @@
 			path = ACActionSheet;
 			sourceTree = "<group>";
 		};
+		DAC77A092242834C002B6C0E /* MyWalletViewController -- 我的钱包 */ = {
+			isa = PBXGroup;
+			children = (
+				DAC77A0E22428B84002B6C0E /* View */,
+				DAC77A0B2242838F002B6C0E /* MyWalletViewController.h */,
+				DAC77A0C2242838F002B6C0E /* MyWalletViewController.m */,
+			);
+			path = "MyWalletViewController -- 我的钱包";
+			sourceTree = "<group>";
+		};
+		DAC77A0A2242834F002B6C0E /* New Group1 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		DAC77A0E22428B84002B6C0E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DAC77A1222428C87002B6C0E /* MyWalletView.h */,
+				DAC77A1322428C87002B6C0E /* MyWalletView.m */,
+				DAC77A1522428EAF002B6C0E /* MyWalletViewTableViewCell.h */,
+				DAC77A1622428EAF002B6C0E /* MyWalletViewTableViewCell.m */,
+				DAC77A1722428EAF002B6C0E /* MyWalletViewTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -918,6 +960,7 @@
 				DAA08FA2223ACA3100E944FE /* RouteDetailTopTableViewCell.xib in Resources */,
 				DAA08F002239406700E944FE /* LaunchScreen.storyboard in Resources */,
 				DAA08EFD2239406700E944FE /* Assets.xcassets in Resources */,
+				DAC77A1922428EAF002B6C0E /* MyWalletViewTableViewCell.xib in Resources */,
 				DAC77A0722413FAA002B6C0E /* ACActionSheet.bundle in Resources */,
 				DAA08EFB2239406300E944FE /* Main.storyboard in Resources */,
 				DAA08FBB223C1A7B00E944FE /* LZPickerView.xib in Resources */,
@@ -1009,6 +1052,7 @@
 				DA2B1B70223E5AEF006CC5D3 /* HomeAlertView.m in Sources */,
 				DAA08F7322394D3000E944FE /* HomeViewController.m in Sources */,
 				DAA08EF52239406300E944FE /* AppDelegate.m in Sources */,
+				DAC77A1822428EAF002B6C0E /* MyWalletViewTableViewCell.m in Sources */,
 				DAA08F6B22394CCE00E944FE /* BaseView.m in Sources */,
 				DAA08FAB223BFDA500E944FE /* MyHeaderTableViewCell.m in Sources */,
 				B0474D7F223B9ED6003C6AEE /* HomeUserView.m in Sources */,
@@ -1029,6 +1073,7 @@
 				DA2B1B5C223CC5CB006CC5D3 /* AddPassengerView.m in Sources */,
 				DAA08F8C223AB7BB00E944FE /* RouteDetailViewController.m in Sources */,
 				DAA08F93223AB8BF00E944FE /* RouteViewTableViewCell.m in Sources */,
+				DAC77A1422428C87002B6C0E /* MyWalletView.m in Sources */,
 				DAC779F2223FC261002B6C0E /* HttpHelper.m in Sources */,
 				DAC779FC223FE48B002B6C0E /* UserInfoModel.m in Sources */,
 				DAA08FC2223C1D6300E944FE /* AddSelectedTableViewCell.m in Sources */,
@@ -1037,6 +1082,7 @@
 				DAC77A0822413FAA002B6C0E /* ACActionSheet.m in Sources */,
 				DAC779F4223FC261002B6C0E /* NHFDownImages.m in Sources */,
 				DAA08FC9223CC20000E944FE /* MyView.m in Sources */,
+				DAC77A0D2242838F002B6C0E /* MyWalletViewController.m in Sources */,
 				DAA08FA8223BFB3200E944FE /* SettingViewController.m in Sources */,
 				DAC779FF223FF3C2002B6C0E /* OrderModel.m in Sources */,
 				DAC779E7223FC237002B6C0E /* JsonDeal.m in Sources */,
@@ -1215,7 +1261,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8D2PV5J5YR;
+				DEVELOPMENT_TEAM = 52HKCP4F62;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/driverTerrace/Setting/PrefixHeader.pch";
 				INFOPLIST_FILE = driverTerrace/Info.plist;
@@ -1239,7 +1285,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8D2PV5J5YR;
+				DEVELOPMENT_TEAM = 52HKCP4F62;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/driverTerrace/Setting/PrefixHeader.pch";
 				INFOPLIST_FILE = driverTerrace/Info.plist;

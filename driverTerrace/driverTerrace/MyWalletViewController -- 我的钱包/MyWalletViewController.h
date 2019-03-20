@@ -1,8 +1,8 @@
 //
-//  RouteDetailViewController.h
+//  MyWalletViewController.h
 //  driverTerrace
 //
-//  Created by 关云秀 on 2019/3/15.
+//  Created by 关云秀 on 2019/3/20.
 //  Copyright © 2019 xuannalisha. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RouteDetailViewController : BaseViewController
+@interface MyWalletViewController : BaseViewController
 
 @end
 

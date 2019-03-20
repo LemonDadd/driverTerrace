@@ -10,6 +10,7 @@
 #import "MyViewController.h"
 #import "RouteViewController.h"
 #import "SettingViewController.h"
+#import "MyWalletViewController.h"
 
 
 @interface HomeTopView()
@@ -180,7 +181,8 @@
         [self.viewController.navigationController pushViewController:vc animated:YES];
     }
     if (btn.tag ==2) {
-        
+        MyWalletViewController *vc= [MyWalletViewController new];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
     }
     if (btn.tag ==3) {
         

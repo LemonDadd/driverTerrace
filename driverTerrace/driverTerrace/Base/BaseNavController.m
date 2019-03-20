@@ -20,8 +20,12 @@
     // 导航
     UINavigationBar *navBar = [UINavigationBar appearance];
     NSDictionary *dict = @{NSForegroundColorAttributeName :[UIColor whiteColor]};
-    [navBar setBackgroundImage:[UIImage imageNamed:@"ico_nav"] forBarMetrics:UIBarMetricsDefault];
+    //[navBar setBackgroundImage:[UIImage imageNamed:@"ico_nav"] forBarMetrics:UIBarMetricsDefault];
+    [navBar  setBackgroundImage:[UIImage imageNamed:@"ico_nav"] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [navBar setShadowImage:[[UIImage alloc] init]];
     [navBar setTitleTextAttributes:dict];
+    
+   
     
     
     // 设置整个项目所有item的主题样式

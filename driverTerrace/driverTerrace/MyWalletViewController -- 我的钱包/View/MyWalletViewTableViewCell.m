@@ -1,14 +1,14 @@
 //
-//  RouteDetailTopTableViewCell.m
+//  MyWalletViewTableViewCell.m
 //  driverTerrace
 //
-//  Created by 关云秀 on 2019/3/15.
+//  Created by 关云秀 on 2019/3/20.
 //  Copyright © 2019 xuannalisha. All rights reserved.
 //
 
-#import "RouteDetailTopTableViewCell.h"
+#import "MyWalletViewTableViewCell.h"
 
-@implementation RouteDetailTopTableViewCell
+@implementation MyWalletViewTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

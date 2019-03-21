@@ -144,18 +144,16 @@
  */
 + (void)requestAlterMessageByName:(NSString *)name
                               sex:(NSInteger)sex
-                         nickname:(NSString *)nickname
                      portraitFile:(NSString *)portraitFile
                        drivingage:(NSString *)drivingage
                       platenumber:(NSString *)platenumber
                              type:(NSString *)type
                                id:(NSString *)Id
-                          request:(void(^)(BOOL message,
+                          request:(void(^)(MyInfoModel *message,
                                            NSString *errorMsg))request {
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:name forKey:@"name"];
     [paramDic setObject:@(sex) forKey:@"sex"];
-    [paramDic setObject:nickname forKey:@"nickname"];
     [paramDic setObject:portraitFile forKey:@"portraitFile"];
     [paramDic setObject:drivingage forKey:@"drivingage"];
     [paramDic setObject:platenumber forKey:@"platenumber"];
@@ -169,7 +167,9 @@
                 NSDictionary* dic =[JsonDeal dealJson:data];
                 BOOL success = [[dic objectForKey:@"success"] integerValue];
                 if (success) {
-                    request(true, nil);
+                    NSDictionary *modelDic = dic[@"body"][@"driver"];
+                    MyInfoModel *model = [MyInfoModel mj_objectWithKeyValues:modelDic];
+                    request(model, nil);
                 } else {
                     request(false, dic[@"msg"]);
                 }
@@ -295,5 +295,75 @@
         }
     }];
 }
+
+/**
+ 获取用户信息
+ */
++ (void)requestPersonMessageByDriverid:(NSString *)driverid
+                               request:(void(^)(NSArray *message,
+                                                NSString *errorMsg))request {
+    NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
+    [paramDic setObject:driverid forKey:@"driverid"];
+    [HttpHelper httpDataRequestByGetMethod:PersonMessageBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+        if (finish) {
+            if (data == nil) {
+                request(nil, ErrorMessage);
+            } else {
+                NSDictionary* dic =[JsonDeal dealJson:data];
+                BOOL Code = [[dic objectForKey:@"success"] boolValue];
+                if (Code) {
+                    NSArray *data = dic[@"body"];
+                    request(data, nil);
+                } else {
+                    request(nil, dic[@"msg"]);
+                }
+            }
+        } else {
+            request(nil, data);
+        }
+    }];
+}
+
+/**
+ 添加乘客
+ */
++ (void)requestOfflineUserByServicetype:(NSString *)servicetype
+                                  start:(NSString *)start
+                            destination:(NSString *)destination
+                                 bytime:(NSString *)bytime
+                                    pay:(NSString *)pay
+                               getoncar:(NSString *)getoncar
+                                   name:(NSString *)name
+                          driverOrderid:(NSString *)driverOrderid
+                                request:(void(^)(BOOL message,
+                                                 NSString *errorMsg))request {
+    NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
+    [paramDic setObject:servicetype forKey:@"servicetype"];
+    [paramDic setObject:start forKey:@"start"];
+    [paramDic setObject:destination forKey:@"destination"];
+    [paramDic setObject:bytime forKey:@"bytime"];
+    [paramDic setObject:pay forKey:@"pay"];
+    [paramDic setObject:getoncar forKey:@"getoncar"];
+    [paramDic setObject:name forKey:@"name"];
+    [paramDic setObject:driverOrderid forKey:@"driverOrderid"];
+    [HttpHelper httpDataRequestByGetMethod:OfflineUserBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+        if (finish) {
+            if (data == nil) {
+                request(nil, ErrorMessage);
+            } else {
+                NSDictionary* dic =[JsonDeal dealJson:data];
+                BOOL success = [[dic objectForKey:@"success"] integerValue];
+                if (success) {
+                    request(true, nil);
+                } else {
+                    request(false, dic[@"msg"]);
+                }
+            }
+        } else {
+            request(nil, data);
+        }
+    }];
+}
+
 
 @end

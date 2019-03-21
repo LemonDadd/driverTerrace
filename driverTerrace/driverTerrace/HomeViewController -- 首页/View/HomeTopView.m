@@ -11,7 +11,7 @@
 #import "RouteViewController.h"
 #import "SettingViewController.h"
 #import "MyWalletViewController.h"
-#import "AddPassengerViewController.h"
+#import "LeaveViewController.h"
 
 
 @interface HomeTopView()
@@ -186,7 +186,7 @@
         [self.viewController.navigationController pushViewController:vc animated:YES];
     }
     if (btn.tag ==3) {
-        AddPassengerViewController *vc = [AddPassengerViewController new];
+        LeaveViewController *vc = [LeaveViewController new];
         [self.viewController.navigationController pushViewController:vc animated:YES];
     }
     if (btn.tag ==4) {

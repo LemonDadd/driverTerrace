@@ -221,9 +221,10 @@
         return;
     }
    
-    [AllRequest requestAlterMessageByName:self.name.text sex:[self.sex.text isEqualToString:@"男"]?1:2 nickname:self.name.text portraitFile:[self imageToString:_pic] drivingage:self.age.text  platenumber:self.plateNumber.text type:self.car.text id:[UserInfoModel getUserInfoModel].driverid request:^(BOOL message, NSString * _Nonnull errorMsg) {
+    [AllRequest requestAlterMessageByName:self.name.text sex:[self.sex.text isEqualToString:@"男"]?1:2 portraitFile:[self imageToString:_pic] drivingage:self.age.text  platenumber:self.plateNumber.text type:self.car.text id:[UserInfoModel getUserInfoModel].driverid request:^(MyInfoModel *message, NSString * _Nonnull errorMsg) {
         if (message) {
-            
+            [message saveMyInfoModel];
+            [CustomView alertMessage:@"成功" view:self];
         } else {
             [CustomView alertMessage:errorMsg view:self];
         }

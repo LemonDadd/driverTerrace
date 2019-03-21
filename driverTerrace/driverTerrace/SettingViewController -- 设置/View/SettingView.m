@@ -8,6 +8,7 @@
 
 #import "SettingView.h"
 #import "lawViewController.h"
+#import "ChangePassViewController.h"
 
 @interface SettingView ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -80,6 +81,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 2) {
         lawViewController *vc= [lawViewController new];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
+    }
+    if (indexPath.row == 1) {
+        ChangePassViewController *vc= [ChangePassViewController new];
         [self.viewController.navigationController pushViewController:vc animated:YES];
     }
 }

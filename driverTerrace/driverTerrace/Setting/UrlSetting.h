@@ -13,22 +13,22 @@
 #define BaseUrl(api_IP, lastUrl) ([NSString stringWithFormat:@"%@%@", (api_IP), (lastUrl)])
 
 /**
- *  发送验证码
+ *  发送验证码(完成)
  */
 #define SendPhoneCodeBaseUrl BaseUrl(Api_IP, @"/driverAppController/sendPhoneCode")
 
 /**
- *  司机端注册接口
+ *  司机端注册接口(完成)
  */
 #define DriverRegisterBaseUrl BaseUrl(Api_IP, @"/driverAppController/driverRegister")
 
 /**
- *  司机端登录接口
+ *  司机端登录接口(完成)
  */
 #define DriverLoginBaseUrl BaseUrl(Api_IP, @"/driverAppController/driverLogin")
 
 /**
- *   司机端修改密码
+ *   司机端修改密码(完成)
  */
 #define DriveralterBaseUrl BaseUrl(Api_IP, @"/driverAppController/driveralter")
 
@@ -61,6 +61,16 @@
  *  订单详情，导航到用户订单出发点
  */
 #define GetPassengerInfoBaseUrl BaseUrl(Api_IP, @"/driverAppController/getPassengerInfo")
+
+/**
+ *  获取用户信息
+ */
+#define PersonMessageBaseUrl BaseUrl(Api_IP, @"/driverAppController/personMessage")
+
+/**
+ *  添加乘客信息
+ */
+#define OfflineUserBaseUrl BaseUrl(Api_IP, @"/driverAppController/offlineUser")
 
 /**
  *  发送验证码

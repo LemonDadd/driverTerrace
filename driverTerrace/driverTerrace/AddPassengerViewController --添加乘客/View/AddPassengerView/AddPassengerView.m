@@ -12,18 +12,25 @@
 #import "LZPickerView.h"
 #import "CityViewController.h"
 
-@interface AddPassengerView()<UITableViewDelegate,UITableViewDataSource,HWDownSelectedViewDelegate>
+@interface AddPassengerView()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView *tab;
 @property (nonatomic, strong)NSArray *array;
 @property (nonatomic, strong)NSArray *parray;
 @property (nonatomic, strong)NSArray *payTypeList;
 @property (nonatomic, strong)NSArray *carTypeList;
-@property(nonatomic,strong)LZPickerView *lzPickerVIew;
+@property (nonatomic,strong)LZPickerView *lzPickerView;
+
+@property (nonatomic,strong) UITextField *name;
+@property (nonatomic,strong) UITextField *fuwu;
+@property (nonatomic,strong) UITextField *fromField;
+@property (nonatomic,strong) UITextField *toField;
+@property (nonatomic,strong) UITextField *timeField;
+@property (nonatomic,strong) NSString *payType;
+@property (nonatomic,strong) NSString *inCarType;
+
 
 @end
-
-
 
 @implementation AddPassengerView
 
@@ -52,12 +59,12 @@
             [_tab setSeparatorInset:UIEdgeInsetsZero];
         }
         NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"LZPickerView" owner:nil options:nil];
-        self.lzPickerVIew  = views[0];
+        self.lzPickerView  = views[0];
         
-        EBDropdownListItem *item1 = [[EBDropdownListItem alloc] initWithItem:@"1" itemName:@"未支付"];
-        EBDropdownListItem *item2 = [[EBDropdownListItem alloc] initWithItem:@"2" itemName:@"已支付"];
-        EBDropdownListItem *item3 = [[EBDropdownListItem alloc] initWithItem:@"3" itemName:@"未上车"];
-        EBDropdownListItem *item4 = [[EBDropdownListItem alloc] initWithItem:@"4" itemName:@"已上车"];
+        EBDropdownListItem *item1 = [[EBDropdownListItem alloc] initWithItem:@"2" itemName:@"未支付"];
+        EBDropdownListItem *item2 = [[EBDropdownListItem alloc] initWithItem:@"3" itemName:@"已支付"];
+        EBDropdownListItem *item3 = [[EBDropdownListItem alloc] initWithItem:@"2" itemName:@"未上车"];
+        EBDropdownListItem *item4 = [[EBDropdownListItem alloc] initWithItem:@"1" itemName:@"已上车"];
         _payTypeList = @[item1,item2];
         _carTypeList = @[item3,item4];
         
@@ -76,17 +83,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  {
-    
+    kWeakSelf(self);
     if (indexPath.row == 5) {
         AddSelectedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddSelectedTableViewCell"];
         if (cell == nil) {
             cell = [[AddSelectedTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddSelectedTableViewCell"];
         }
         cell.leftLabel.text = _array[indexPath.row];
-        cell.dropdownListView.tag = 0;
         cell.dropdownListView.dataSource = _payTypeList;
         [cell.dropdownListView setDropdownListViewSelectedBlock:^(EBDropdownListView *dropdownListView) {
-            
+            weakself.payType =dropdownListView.selectedItem.itemId;
         }];
         return cell;
     }else if (indexPath.row ==6){
@@ -95,10 +101,9 @@
             cell = [[AddSelectedTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddSelectedTableViewCell2"];
         }
         cell.leftLabel.text = _array[indexPath.row];
-        cell.dropdownListView.tag = 1;
         cell.dropdownListView.dataSource = _carTypeList;
         [cell.dropdownListView setDropdownListViewSelectedBlock:^(EBDropdownListView *dropdownListView) {
-            
+             weakself.inCarType =dropdownListView.selectedItem.itemId;
         }];
         return cell;
     }else  {
@@ -113,11 +118,22 @@
         cell.textField.placeholder = _parray[indexPath.row];
         if (indexPath.row == 0) {
             cell.textField.enabled =true;
-            
+            _name = cell.textField;
         }
         if (indexPath.row == 1) {
             cell.textField.text = _parray[indexPath.row];
+            _fuwu = cell.textField;
         }
+        if (indexPath.row == 2) {
+            _fromField = cell.textField;
+        }
+        if (indexPath.row == 3) {
+            _toField = cell.textField;
+        }
+        if (indexPath.row == 3) {
+            _timeField = cell.textField;
+        }
+        
         return cell;
     }
     
@@ -139,12 +155,12 @@
     }
     
     if (indexPath.row == 4) {
-        [self.lzPickerVIew lzPickerVIewType:LZPickerViewTypeWeigth];
-        self.lzPickerVIew.dataSource = @[[self getOneWeek],[self getTime]];
-        self.lzPickerVIew.titleText = @"乘车时间";
-        self.lzPickerVIew.selectValue  = ^(NSString *value){
+        [self.lzPickerView lzPickerVIewType:LZPickerViewTypeWeigth];
+        self.lzPickerView.dataSource = @[[self getOneWeek],[self getTime]];
+        self.lzPickerView.titleText = @"乘车时间";
+        self.lzPickerView.selectValue  = ^(NSString *value){
         };
-        [self.lzPickerVIew show];
+        [self.lzPickerView show];
     }
 }
 
@@ -167,6 +183,20 @@
         [arr addObject:timeStr];
     }
     return [NSArray arrayWithArray:arr];
+}
+
+
+
+- (void)save {
+    [AllRequest requestOfflineUserByServicetype:@"1" start:_fromField.text destination:_toField.text bytime:_timeField.text pay:_payType getoncar:_inCarType name:_name.text driverOrderid:@"" request:^(BOOL message, NSString * _Nonnull errorMsg) {
+        if (message) {
+            [[CustomView getInstancetype]showAlertView:@"添加成功" byView:self delay:1 completion:^{
+                [self.viewController.navigationController popViewControllerAnimated:YES];
+            }];
+        } else {
+            [CustomView alertMessage:errorMsg view:self];
+        }
+    }];
 }
 
 
@@ -213,13 +243,5 @@
     //设置阴影路径
     self.layer.shadowPath = path.CGPath;
 }
-
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
 
 @end

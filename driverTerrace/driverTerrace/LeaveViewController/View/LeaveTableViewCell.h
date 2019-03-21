@@ -1,18 +1,16 @@
 //
-//  AddPassengerView.h
+//  LeaveTableViewCell.h
 //  driverTerrace
 //
-//  Created by 关云秀 on 2019/3/16.
+//  Created by quanqiuwa on 2019/3/21.
 //  Copyright © 2019 xuannalisha. All rights reserved.
 //
 
-#import "BaseView.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddPassengerView : BaseView
-
-- (void)save;
+@interface LeaveTableViewCell : UITableViewCell
 
 @end
 

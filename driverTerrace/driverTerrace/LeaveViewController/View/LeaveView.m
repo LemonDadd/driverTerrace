@@ -116,7 +116,7 @@
             [(UIButton *)btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }
     }
-    [sender setTitleColor:kRGBColor(249, 249, 248) forState:UIControlStateNormal];
+    [sender setTitleColor:kRGBColor(37, 124, 225) forState:UIControlStateNormal];
     
     [UIView animateWithDuration:0.1 animations:^{
         [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {

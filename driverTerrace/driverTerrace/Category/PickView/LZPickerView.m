@@ -168,7 +168,7 @@
             self.selectValue(self.selectDefault);
         }
     }else if (self.number==2){
-        NSString *text = [NSString stringWithFormat:@"%@.%@kg",self.left,self.right];
+        NSString *text = [NSString stringWithFormat:@"%@ %@",self.left,self.right];
         if (self.selectValue) {
             self.selectValue(text);
         }

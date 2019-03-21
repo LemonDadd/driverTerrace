@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, OrderType) {
 
 @property (nonatomic, strong)CircuitModel *circuit;
 @property (nonatomic, strong)NSArray *orderList;
+@property (nonatomic, copy)NSString *orderId;
 
 @end
 
@@ -31,6 +32,9 @@ typedef NS_ENUM(NSUInteger, OrderType) {
 @property (nonatomic, copy)NSString *circuitname;
 @property (nonatomic, assign)CGFloat price;
 @property (nonatomic, copy)NSString *starttime;
+@property (nonatomic, copy)NSString *startName;
+@property (nonatomic, copy)NSString *destinationName;
+@property (nonatomic, copy)NSString *id;//
 
 @end
 
@@ -43,6 +47,12 @@ typedef NS_ENUM(NSUInteger, OrderType) {
 @property (nonatomic, copy)NSString *originlongitude;//纬度
 @property (nonatomic, assign)NSInteger payStatus;//支付状态;
 @property (nonatomic, assign)NSInteger personNum;//人数
+
+@property (nonatomic, copy)NSString *startName;
+@property (nonatomic, copy)NSString *destinationName;
+@property (nonatomic, copy)NSString *lineId;//
+
+
 @property (nonatomic, strong)OrderUserModel *user;
 
 @property (nonatomic, assign)OrderType type;//扩展字段

@@ -23,6 +23,7 @@
     // Do any additional setup after loading the view.
     self.title = @"添加乘客";
     _addPassengerView = [AddPassengerView new];
+    _addPassengerView.model = _model;
     [self.view addSubview:_addPassengerView];
     [_addPassengerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@20);

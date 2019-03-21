@@ -12,6 +12,7 @@
 
 @interface RouteDetailView()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UITableView *tab;
+@property (nonatomic, strong)NSMutableArray *userList;
 
 @end
 
@@ -58,7 +59,7 @@
     if (section == 0) {
         return 1;
     } else {
-        return 4;
+        return _userList.count;
     }
 }
 
@@ -74,15 +75,46 @@
     
     if (indexPath.section ==0) {
          RouteDetailTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RouteDetailTopTableViewCell"];
+        cell.priceLabel.text = [NSString stringWithFormat:@"%.2f/位",_model.circutiMap.price];
+        cell.sitLabel.text = [NSString stringWithFormat:@"%@/4",_model.circutiMap.personNum];
+        cell.timeLabel.text = _model.circutiMap.startTime;
+        cell.rightLabel.text =  [OrderStatusTool getOrderStatus:_model.orderState];
+        
         return cell;
     } else {
         RouteDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RouteDetailTableViewCell"];
         if (!cell) {
             cell = [[RouteDetailTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RouteDetailTableViewCell"];
         };
+        OrderListModel *model =_userList[indexPath.row];
+        cell.model =model;
         return cell;
     }
   
+}
+
+-(void)setModel:(RouteDetailModel *)model {
+    _model = model;
+    _userList = [NSMutableArray new];
+    for (int i=0; i<model.userOrderMaps.count; i++) {
+        //用户
+        OrderListModel *user = [OrderListModel mj_objectWithKeyValues:model.userOrderMaps[i]];
+        user.type = OrderTypeUser;
+        user.startName = model.circutiMap.startName;
+        user.destinationName = model.circutiMap.destinationName;
+        [_userList addObject:user];
+        if (user.personNum >1) {
+            //同行
+            for (int j=0; j<user.personNum-1; j++) {
+                OrderListModel *fellow = [OrderListModel mj_objectWithKeyValues:model.userOrderMaps[i]];
+                fellow.type = OrderTypeFellow;
+                fellow.startName = model.circutiMap.startName;
+                fellow.destinationName = model.circutiMap.destinationName;
+                [_userList addObject:fellow];
+            }
+        }
+    }
+    [_tab reloadData];
 }
 
 -(void)layoutSubviews {

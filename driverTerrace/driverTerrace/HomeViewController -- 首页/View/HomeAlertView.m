@@ -21,7 +21,7 @@
 
 @implementation HomeAlertView
 
-- (instancetype)init
+- (instancetype)initWithList:(NSArray *)list
 {
     self = [super init];
     if (self) {
@@ -46,8 +46,10 @@
         }];
         
         UIView *last = nil;
-        for (int i=0; i<4; i++) {
+        for (int i=0; i<list.count; i++) {
+            OrderListModel *model = list[i];
             HomeCarView *v = [HomeCarView new];
+            v.model = model;
             [_contentV addSubview:v];
             if (last == nil) {
                 [v mas_makeConstraints:^(MASConstraintMaker *make) {

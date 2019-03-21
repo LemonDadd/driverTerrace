@@ -91,6 +91,8 @@
 		DAC77A402242ADE8002B6C0E /* NSDate+JKReporting.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A352242ADE8002B6C0E /* NSDate+JKReporting.m */; };
 		DAC77A412242ADE8002B6C0E /* NSDate+JKZeroDate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A362242ADE8002B6C0E /* NSDate+JKZeroDate.m */; };
 		DAC77A422242ADE8002B6C0E /* NSDate+JKCupertinoYankee.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A3A2242ADE8002B6C0E /* NSDate+JKCupertinoYankee.m */; };
+		DAC77A462243CF87002B6C0E /* RouteDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A452243CF87002B6C0E /* RouteDetailModel.m */; };
+		DAC77A4B2243D6B4002B6C0E /* OrderStatusTool.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC77A4A2243D6B4002B6C0E /* OrderStatusTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -277,6 +279,10 @@
 		DAC77A382242ADE8002B6C0E /* NSDate+JKInternetDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+JKInternetDateTime.h"; sourceTree = "<group>"; };
 		DAC77A392242ADE8002B6C0E /* NSDate+JKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+JKExtension.h"; sourceTree = "<group>"; };
 		DAC77A3A2242ADE8002B6C0E /* NSDate+JKCupertinoYankee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+JKCupertinoYankee.m"; sourceTree = "<group>"; };
+		DAC77A442243CF87002B6C0E /* RouteDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteDetailModel.h; sourceTree = "<group>"; };
+		DAC77A452243CF87002B6C0E /* RouteDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteDetailModel.m; sourceTree = "<group>"; };
+		DAC77A492243D6B4002B6C0E /* OrderStatusTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatusTool.h; sourceTree = "<group>"; };
+		DAC77A4A2243D6B4002B6C0E /* OrderStatusTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatusTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -572,6 +578,7 @@
 		DAA08F37223949F500E944FE /* RouteDetailViewController --行程详情 */ = {
 			isa = PBXGroup;
 			children = (
+				DAC77A432243CF72002B6C0E /* Model */,
 				DAA08F3A223949F500E944FE /* View */,
 				DAA08F8A223AB7BB00E944FE /* RouteDetailViewController.h */,
 				DAA08F8B223AB7BB00E944FE /* RouteDetailViewController.m */,
@@ -807,6 +814,8 @@
 				DAC779E4223FC237002B6C0E /* JsonDeal */,
 				DAC779E1223FC221002B6C0E /* AllRequest.h */,
 				DAC779E2223FC221002B6C0E /* AllRequest.m */,
+				DAC77A492243D6B4002B6C0E /* OrderStatusTool.h */,
+				DAC77A4A2243D6B4002B6C0E /* OrderStatusTool.m */,
 			);
 			path = AllRequest;
 			sourceTree = "<group>";
@@ -907,6 +916,16 @@
 				DAC77A3A2242ADE8002B6C0E /* NSDate+JKCupertinoYankee.m */,
 			);
 			path = NSDate;
+			sourceTree = "<group>";
+		};
+		DAC77A432243CF72002B6C0E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DAC77A442243CF87002B6C0E /* RouteDetailModel.h */,
+				DAC77A452243CF87002B6C0E /* RouteDetailModel.m */,
+			);
+			name = Model;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1093,6 +1112,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC77A462243CF87002B6C0E /* RouteDetailModel.m in Sources */,
+				DAC77A4B2243D6B4002B6C0E /* OrderStatusTool.m in Sources */,
 				DAA08F8F223AB7D000E944FE /* RouteView.m in Sources */,
 				DAA08EF82239406300E944FE /* ViewController.m in Sources */,
 				DAA08F6F22394CCE00E944FE /* BaseNavController.m in Sources */,
@@ -1337,7 +1358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8D2PV5J5YR;
+				DEVELOPMENT_TEAM = 52HKCP4F62;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/driverTerrace/Setting/PrefixHeader.pch";
 				INFOPLIST_FILE = driverTerrace/Info.plist;
@@ -1361,7 +1382,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8D2PV5J5YR;
+				DEVELOPMENT_TEAM = 52HKCP4F62;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/driverTerrace/Setting/PrefixHeader.pch";
 				INFOPLIST_FILE = driverTerrace/Info.plist;

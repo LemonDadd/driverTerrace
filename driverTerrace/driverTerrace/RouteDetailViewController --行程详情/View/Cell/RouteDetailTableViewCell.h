@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RouteDetailTableViewCell : UITableViewCell
+
+@property (nonatomic, strong)OrderListModel *model;
 
 @end
 

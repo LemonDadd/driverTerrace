@@ -132,7 +132,7 @@
 -(UIButton *)msgBtn {
     if (!_msgBtn) {
         _msgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_msgBtn setBackgroundImage:[UIImage imageNamed:@"ico_msg"] forState:UIControlStateNormal];
+        [_msgBtn setBackgroundImage:[UIImage imageNamed:@"ico_msg_pass"] forState:UIControlStateNormal];
         [_msgBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
         [_msgBtn setTitleColor:kRGBColor(37, 124, 229) forState:UIControlStateNormal];
         [_msgBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];

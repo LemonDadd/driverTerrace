@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AddPassengerViewController : BaseViewController
 
+@property (nonatomic, strong)OrderModel *model;
+
 @end
 
 NS_ASSUME_NONNULL_END

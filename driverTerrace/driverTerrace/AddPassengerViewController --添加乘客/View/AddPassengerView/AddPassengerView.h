@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AddPassengerView : BaseView
 
+@property (nonatomic, strong)OrderModel *model;
+
 - (void)save;
 
 @end

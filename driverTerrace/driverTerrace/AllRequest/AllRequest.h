@@ -11,6 +11,7 @@
 #import "OrderModel.h"
 #import "RouteListModel.h"
 #import "MyInfoModel.h"
+#import "RouteDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -57,11 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)requestAlterMessageByName:(NSString *)name
                               sex:(NSInteger)sex
                      portraitFile:(NSString *)portraitFile
-                       drivingage:(NSString *)drivingage
+                       drivingage:(NSInteger)drivingage
                       platenumber:(NSString *)platenumber
                              type:(NSString *)type
                                id:(NSString *)Id
-                          request:(void(^)(MyInfoModel *message,
+                          request:(void(^)(NSString *message,
                                            NSString *errorMsg))request;
 
 /**
@@ -117,8 +118,6 @@ NS_ASSUME_NONNULL_BEGIN
  添加乘客
  */
 + (void)requestOfflineUserByServicetype:(NSString *)servicetype
-                                  start:(NSString *)start
-                            destination:(NSString *)destination
                                  bytime:(NSString *)bytime
                                     pay:(NSString *)pay
                                getoncar:(NSString *)getoncar
@@ -126,6 +125,10 @@ NS_ASSUME_NONNULL_BEGIN
                           driverOrderid:(NSString *)driverOrderid
                                 request:(void(^)(BOOL message,
                                                  NSString *errorMsg))request;
+
++ (void)requestGetUserOrderListByOrderIdByOrderId:(NSString *)orderId
+                                           request:(void(^)(RouteDetailModel *message,
+                                                            NSString *errorMsg))request;
 
 
 

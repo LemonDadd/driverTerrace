@@ -50,8 +50,13 @@
 }
 
 - (void)loadData {
-    [AllRequest requestgGetPassengerInfoByUserOrderId:_model.id request:^(NSArray * _Nonnull message, NSString * _Nonnull errorMsg) {
-        
+    [AllRequest requestGetUserOrderListByOrderIdByOrderId:_model.id request:^(RouteDetailModel * _Nonnull message, NSString * _Nonnull errorMsg) {
+        if (message) {
+            self.titleLabel.text = message.circutiMap.title;
+            self.routeDetailView.model = message;
+        } else {
+            [CustomView alertMessage:errorMsg view:self.view];
+        }
     }];
 }
 

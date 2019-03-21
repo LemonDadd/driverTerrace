@@ -30,7 +30,7 @@
 {
     self = [super init];
     if (self) {
-       
+        
         _lineLabel = [UILabel new];
         _lineLabel.font = [UIFont boldSystemFontOfSize:18];
         _lineLabel.textColor = [UIColor blackColor];
@@ -123,6 +123,7 @@
     for (int i=0; i<_userListArray.count; i++) {
         OrderListModel *model = _userListArray[i];
         HomeUserView *view = [HomeUserView new];
+        view.model = model;
         UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userEvente:)];
         view.tag = i;
         view.userInteractionEnabled = YES;
@@ -170,11 +171,14 @@
 - (void)userEvente:(UITapGestureRecognizer *)gr {
     
     NSInteger tag = [gr view].tag;
-    if (tag == 0) {
+    OrderListModel *user  =_userListArray[tag];
+    if (user.type == OrderTypeNone) {
         AddPassengerViewController *vc= [AddPassengerViewController new];
+        vc.model = _model;
         [self.viewController.navigationController pushViewController:vc animated:YES];
     } else {
-        HomeAlertView *alert = [HomeAlertView new];
+        HomeAlertView *alert = [[HomeAlertView alloc]initWithList:_userListArray];
+        alert.indx = tag;
         [[CustomView getInstancetype] windowAlertBy:alert isTouchClose:false color:nil animated:YES addDelegate:nil];
         [alert mas_updateConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(alert.superview);
@@ -182,13 +186,14 @@
         }];
         [alert layoutIfNeeded];
     }
-   
+    
 }
 
 -(void)setModel:(OrderModel *)model {
+    
     _model = model;
-    _lineLabel.text = [NSString stringWithFormat:@"线路车%@",model.circuit.circuitname];
-    _priceLabel.text = [NSString stringWithFormat:@"%f/位", model.circuit.price];
+    _lineLabel.text = [NSString stringWithFormat:@"线路车:%@-%@",model.circuit.startName,model.circuit.destinationName];
+    _priceLabel.text = [NSString stringWithFormat:@"%.2f/位", model.circuit.price];
     _timeLabel.text = model.circuit.starttime;
     
     
@@ -197,22 +202,32 @@
     for (int i=0; i<model.orderList.count; i++) {
         //用户
         OrderListModel *user = [OrderListModel mj_objectWithKeyValues:model.orderList[i]];
+        user.startName = model.circuit.startName;
+        user.destinationName = model.circuit.destinationName;
+        user.lineId = model.circuit.id;
         user.type = OrderTypeUser;
         [_userListArray addObject:user];
         if (user.personNum >1) {
             //同行
-            for (int j=0; i<user.personNum-1; j++) {
-                 OrderListModel *fellow = [OrderListModel mj_objectWithKeyValues:model.orderList[i]];
-                 fellow.type = OrderTypeFellow;
+            for (int j=0; j<user.personNum-1; j++) {
+                OrderListModel *fellow = [OrderListModel mj_objectWithKeyValues:model.orderList[i]];
+                fellow.type = OrderTypeFellow;
+                fellow.startName = model.circuit.startName;
+                fellow.destinationName = model.circuit.destinationName;
+                fellow.lineId = model.circuit.id;
                 [_userListArray addObject:fellow];
             }
         }
     }
     if (_userListArray.count<4) {
+        NSInteger cont =4-_userListArray.count;
         //添加乘客
-        for (int i=0; i<4-_userListArray.count; i++) {
+        for (int i=0; i<cont; i++) {
             OrderListModel *user = [OrderListModel new];
             user.type =OrderTypeNone;
+            user.startName = model.circuit.startName;
+            user.destinationName = model.circuit.destinationName;
+            user.lineId = model.circuit.id;
             [_userListArray addObject:user];
         }
     }

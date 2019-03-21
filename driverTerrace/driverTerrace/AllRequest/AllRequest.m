@@ -145,21 +145,21 @@
 + (void)requestAlterMessageByName:(NSString *)name
                               sex:(NSInteger)sex
                      portraitFile:(NSString *)portraitFile
-                       drivingage:(NSString *)drivingage
+                       drivingage:(NSInteger )drivingage
                       platenumber:(NSString *)platenumber
                              type:(NSString *)type
                                id:(NSString *)Id
-                          request:(void(^)(MyInfoModel *message,
+                          request:(void(^)(NSString *message,
                                            NSString *errorMsg))request {
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:name forKey:@"name"];
     [paramDic setObject:@(sex) forKey:@"sex"];
     [paramDic setObject:portraitFile forKey:@"portraitFile"];
-    [paramDic setObject:drivingage forKey:@"drivingage"];
+    [paramDic setObject:@(drivingage)forKey:@"drivingage"];
     [paramDic setObject:platenumber forKey:@"platenumber"];
     [paramDic setObject:type forKey:@"type"];
     [paramDic setObject:Id forKey:@"id"];
-    [HttpHelper httpDataRequestByGetMethod:AlterMessageBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+    [HttpHelper httpDataRequest:AlterMessageBaseUrl paramDictionary:paramDic TimeOutSeconds:120 request:^(BOOL finish, NSString *data) {
         if (finish) {
             if (data == nil) {
                 request(nil, ErrorMessage);
@@ -167,9 +167,9 @@
                 NSDictionary* dic =[JsonDeal dealJson:data];
                 BOOL success = [[dic objectForKey:@"success"] integerValue];
                 if (success) {
-                    NSDictionary *modelDic = dic[@"body"][@"driver"];
-                    MyInfoModel *model = [MyInfoModel mj_objectWithKeyValues:modelDic];
-                    request(model, nil);
+                    NSString *modelDic = dic[@"body"][@"portrait"];
+                    //MyInfoModel *model = [MyInfoModel mj_objectWithKeyValues:modelDic];
+                    request(modelDic, nil);
                 } else {
                     request(false, dic[@"msg"]);
                 }
@@ -328,8 +328,6 @@
  添加乘客
  */
 + (void)requestOfflineUserByServicetype:(NSString *)servicetype
-                                  start:(NSString *)start
-                            destination:(NSString *)destination
                                  bytime:(NSString *)bytime
                                     pay:(NSString *)pay
                                getoncar:(NSString *)getoncar
@@ -339,14 +337,12 @@
                                                  NSString *errorMsg))request {
     NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
     [paramDic setObject:servicetype forKey:@"servicetype"];
-    [paramDic setObject:start forKey:@"start"];
-    [paramDic setObject:destination forKey:@"destination"];
     [paramDic setObject:bytime forKey:@"bytime"];
     [paramDic setObject:pay forKey:@"pay"];
     [paramDic setObject:getoncar forKey:@"getoncar"];
     [paramDic setObject:name forKey:@"name"];
     [paramDic setObject:driverOrderid forKey:@"driverOrderid"];
-    [HttpHelper httpDataRequestByGetMethod:OfflineUserBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+    [HttpHelper httpDataRequest:OfflineUserBaseUrl paramDictionary:paramDic request:^(BOOL finish, NSString *data) {
         if (finish) {
             if (data == nil) {
                 request(nil, ErrorMessage);
@@ -357,6 +353,32 @@
                     request(true, nil);
                 } else {
                     request(false, dic[@"msg"]);
+                }
+            }
+        } else {
+            request(nil, data);
+        }
+    }];
+}
+
++ (void)requestGetUserOrderListByOrderIdByOrderId:(NSString *)orderId
+                                          request:(void(^)(RouteDetailModel *message,
+                                                           NSString *errorMsg))request {
+    NSMutableDictionary* paramDic = [[NSMutableDictionary alloc] init];
+    [paramDic setObject:orderId forKey:@"orderId"];
+    [HttpHelper httpDataRequestByGetMethod:GetUserOrderListByOrderIdBaseUrl paramDictionary:paramDic TimeOutSeconds:120  request:^(BOOL finish, NSString *data) {
+        if (finish) {
+            if (data == nil) {
+                request(nil, ErrorMessage);
+            } else {
+                NSDictionary* dic =[JsonDeal dealJson:data];
+                BOOL Code = [[dic objectForKey:@"success"] boolValue];
+                if (Code) {
+                    NSDictionary *data = dic[@"body"];
+                    RouteDetailModel *model = [RouteDetailModel mj_objectWithKeyValues:data];
+                    request(model, nil);
+                } else {
+                    request(nil, dic[@"msg"]);
                 }
             }
         } else {

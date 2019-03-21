@@ -126,10 +126,10 @@
 -(void)setModel:(RouteListModel *)model {
     _model = model;
     _lineLabel.text = model.circuitname;
-    _rightLabel.text = model.orderState == 1?@"已完成":@"进行中";
-    _rightLabel.textColor = model.orderState == 1?[UIColor groupTableViewBackgroundColor]:kRGBColor(37, 124, 229);
+    _rightLabel.text = [OrderStatusTool getOrderStatus:model.orderState];
     _timeLabel.text = [NSString stringWithFormat:@"%@ - %@",model.startDate,model.endDate];
     _priceLabel.text = [NSString stringWithFormat:@"￥%.2f/座",model.price];
+    _sitLabel.text = [NSString stringWithFormat:@"%@/4",model.personSum];
 }
 
 - (void)awakeFromNib {

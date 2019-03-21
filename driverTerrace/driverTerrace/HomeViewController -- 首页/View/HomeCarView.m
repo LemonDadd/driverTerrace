@@ -65,7 +65,7 @@
         _picImageV = [UIImageView new];
         _picImageV.layer.masksToBounds = YES;
         _picImageV.layer.cornerRadius = 25.f;
-        _picImageV.backgroundColor = [UIColor redColor];
+        _picImageV.backgroundColor = [UIColor groupTableViewBackgroundColor];
         [self.cardView addSubview:_picImageV];
         [_picImageV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(@20);
@@ -171,10 +171,39 @@
         [_locationBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.payImg);
             make.width.height.equalTo(@30);
-            make.top.equalTo(self.fromLabel);
+            make.centerY.equalTo(self.fromLabel.mas_bottom);
         }];
     }
     return self;
+}
+
+-(void)setModel:(OrderListModel *)model {
+    [_picImageV sd_setImageWithURL:[NSURL URLWithString:model.user.portrait]];
+    _name.text = model.user.nickname;
+    _count.text = [NSString stringWithFormat:@"%ld人",(long)model.personNum];
+    _fromLabel.text = model.startName;
+    _toLabel.text = model.destinationName;
+    
+    if (model.payStatus == 2) {
+        _payLabel.text = @"未支付";
+        _payLabel.textColor = [UIColor grayColor];
+        _picImageV.image = [UIImage imageNamed:@"ico_home_pay_gary"];
+    } else {
+        _payLabel.text = @"已支付";
+        _payLabel.textColor = kRGBColor(237, 116, 70);
+        _picImageV.image = [UIImage imageNamed:@"ico_home_pay"];
+    }
+    NSString *carType = [OrderStatusTool getCarStatu:model.orderStatus];
+    if ([carType isEqualToString:@"已上车"]) {
+        _inCarImg.image = [UIImage imageNamed:@"ico_home_inCar"];
+        _inCarLabel.textColor = kRGBColor(37, 124, 225);
+        _inCarLabel.text =carType;
+    }
+    if ([carType isEqualToString:@"已下车"]) {
+        _inCarLabel.text =carType;
+        _inCarLabel.textColor = [UIColor grayColor];
+        _inCarImg.image = [UIImage imageNamed:@"ico_home_inCar_gary"];
+    }
 }
 
 - (void)close {

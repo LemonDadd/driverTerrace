@@ -39,7 +39,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _picImageV = [UIImageView new];
-        _picImageV.backgroundColor = [UIColor redColor];
+        _picImageV.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _picImageV.layer.masksToBounds = YES;
         _picImageV.layer.cornerRadius = 20.f;
         [self.contentView addSubview:_picImageV];
@@ -69,7 +69,7 @@
         }];
         
         _serve = [UILabel new];
-        _serve.text = @"门 —— 站";
+        _serve.text = @"站 —— 站";
         _serve.textColor = kRGBColor(37, 124, 225);
         _serve.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:_serve];
@@ -180,6 +180,40 @@
         
     }
     return self;
+}
+
+-(void)setModel:(OrderListModel *)model {
+    
+    [_picImageV sd_setImageWithURL:[NSURL URLWithString:model.user.portrait]];
+    _name.text = model.user.nickname;
+    _count.text = [NSString stringWithFormat:@"%ld人",(long)model.personNum];
+    _fromLabel.text = model.startName;
+    _toLabel.text = model.destinationName;
+    
+    
+    if (model.payStatus == 2) {
+        _payLabel.text = @"未支付";
+        _payLabel.textColor = [UIColor grayColor];
+        _picImageV.image = [UIImage imageNamed:@"ico_home_pay_gary"];
+    } else {
+        _payLabel.text = @"已支付";
+        _payLabel.textColor = kRGBColor(237, 116, 70);
+        _picImageV.image = [UIImage imageNamed:@"ico_home_pay"];
+    }
+    _inCarImg.hidden =YES;
+    _inCarLabel.hidden =YES;
+    _outCarLabel.hidden =YES;
+    _outarImg.hidden =YES;
+    
+    NSString *carType = [OrderStatusTool getCarStatu:model.orderStatus];
+    if ([carType isEqualToString:@"已上车"]) {
+        _inCarImg.hidden =NO;
+        _inCarLabel.hidden =NO;
+    }
+    if ([carType isEqualToString:@"已下车"]) {
+        _outCarLabel.hidden =NO;
+        _outarImg.hidden =NO;
+    }
 }
 
 - (void)awakeFromNib {

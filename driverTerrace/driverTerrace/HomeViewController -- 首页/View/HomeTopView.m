@@ -32,7 +32,7 @@
     if (self) {
         
         _headerView = [UIImageView new];
-        _headerView.backgroundColor = [UIColor redColor];
+        _headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _headerView.layer.masksToBounds = YES;
         _headerView.layer.cornerRadius = 25.f;
         [self addSubview:_headerView];

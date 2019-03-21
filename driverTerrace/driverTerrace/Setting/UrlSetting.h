@@ -9,7 +9,8 @@
 #ifndef UrlSetting_h
 #define UrlSetting_h
 
-#define Api_IP @"http://112.35.59.149:8081"
+//#define Api_IP @"http://112.35.59.149:8081"
+#define  Api_IP @"http://192.168.1.104:8082"
 #define BaseUrl(api_IP, lastUrl) ([NSString stringWithFormat:@"%@%@", (api_IP), (lastUrl)])
 
 /**
@@ -71,6 +72,11 @@
  *  添加乘客信息
  */
 #define OfflineUserBaseUrl BaseUrl(Api_IP, @"/driverAppController/offlineUser")
+
+/**
+ *  根据司机订单id 查询用户订单列表
+ */
+#define GetUserOrderListByOrderIdBaseUrl BaseUrl(Api_IP, @"/driverAppController/getUserOrderListByOrderId")
 
 /**
  *  发送验证码

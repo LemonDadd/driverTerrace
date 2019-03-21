@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RouteDetailView : BaseView
 
+@property (nonatomic, strong)RouteDetailModel *model;
+
 @end
 
 NS_ASSUME_NONNULL_END

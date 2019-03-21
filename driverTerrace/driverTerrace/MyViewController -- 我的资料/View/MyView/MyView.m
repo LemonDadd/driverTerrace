@@ -170,7 +170,7 @@
     if (indexPath.row == 8) {
         [self resignFirstResponder];
         [self.lzPickerVIew lzPickerVIewType:LZPickerViewTypeSexAndHeight];
-        self.lzPickerVIew.dataSource = @[@"1年以下",@"1年",@"2年",@"3年",@"4年",@"5年",@"6年",@"7年",@"8年",@"9年",@"10年",@"10年以上"];
+        self.lzPickerVIew.dataSource = @[@"1年",@"2年",@"3年",@"4年",@"5年",@"6年",@"7年",@"8年",@"9年",@"10年"];
         self.lzPickerVIew.titleText = @"驾龄";
         self.lzPickerVIew.selectValue  = ^(NSString *value){
             weakself.age.text = value;
@@ -187,7 +187,7 @@
         [CustomView alertMessage:@"请选择头像" view:self];
         return;
     }
-    
+
     if (!self.name.text.length) {
         [CustomView alertMessage:@"请输入昵称" view:self];
         return;
@@ -220,10 +220,10 @@
         [CustomView alertMessage:@"请选择驾龄" view:self];
         return;
     }
-   
-    [AllRequest requestAlterMessageByName:self.name.text sex:[self.sex.text isEqualToString:@"男"]?1:2 portraitFile:[self imageToString:_pic] drivingage:self.age.text  platenumber:self.plateNumber.text type:self.car.text id:[UserInfoModel getUserInfoModel].driverid request:^(MyInfoModel *message, NSString * _Nonnull errorMsg) {
+
+    [AllRequest requestAlterMessageByName:self.name.text sex:[self.sex.text isEqualToString:@"男"]?1:2 portraitFile:[self imageToString:_pic] drivingage:[self.age.text integerValue] platenumber:self.plateNumber.text type:self.car.text id:[UserInfoModel getUserInfoModel].driverid request:^(NSString * _Nonnull message, NSString * _Nonnull errorMsg) {
         if (message) {
-            [message saveMyInfoModel];
+            [MyInfoModel saveUserHeadImagePath:message];
             [CustomView alertMessage:@"成功" view:self];
         } else {
             [CustomView alertMessage:errorMsg view:self];

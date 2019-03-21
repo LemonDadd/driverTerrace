@@ -23,6 +23,9 @@
 @property (nonatomic, strong)UIImageView *payImg;
 @property (nonatomic, strong)UIImageView *addImageVeiw;
 
+@property (nonatomic, strong)UIView *orderTypeFellowView;
+@property (nonatomic, strong)UIView *orderTypeNoneView;
+
 @end
 
 @implementation HomeUserView
@@ -32,7 +35,7 @@
     self = [super init];
     if (self) {
         _picImageV = [UIImageView new];
-        _picImageV.backgroundColor = [UIColor redColor];
+        _picImageV.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _picImageV.layer.masksToBounds = YES;
         _picImageV.layer.cornerRadius = 15.f;
         [self addSubview:_picImageV];
@@ -49,6 +52,7 @@
         [_name mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.picImageV);
             make.left.equalTo(self.picImageV.mas_right).offset(8);
+            make.right.equalTo(self.mas_centerX).offset(30);
         }];
         
         _count = [UILabel new];
@@ -79,6 +83,7 @@
             make.centerY.equalTo(self.inCarLabel);
             make.right.equalTo(self.inCarLabel.mas_left);
         }];
+
         
         _payLabel = [UILabel new];
         _payLabel.font = [UIFont systemFontOfSize:12];
@@ -135,70 +140,86 @@
         }];
 
 
-//        UIView *view = [UIView new];
-//        view.backgroundColor = [UIColor whiteColor];
-//        [self addSubview:view];
-//        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.edges.equalTo(self);
-//        }];
-//
-//        _addImageVeiw = [UIImageView new];
-//        _addImageVeiw.image = [UIImage imageNamed:@"ico_home_add"];
-//        [self addSubview:_addImageVeiw];
-//        [_addImageVeiw mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.center.equalTo(view);
-//        }];
+        _orderTypeFellowView = [UIView new];
+        _orderTypeFellowView.backgroundColor = [UIColor whiteColor];
+        _orderTypeFellowView.hidden = YES;
+        [self addSubview:_orderTypeFellowView];
+        [_orderTypeFellowView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.count.mas_bottom);
+            make.left.right.bottom.equalTo(self);
+        }];
         
+        _addImageVeiw = [UIImageView new];
+        _addImageVeiw.image = [UIImage imageNamed:@"ico_home_add"];
+        [_orderTypeFellowView addSubview:_addImageVeiw];
+        [_addImageVeiw mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.orderTypeFellowView);
+        }];
+        
+        _orderTypeNoneView = [UIView new];
+        _orderTypeNoneView.hidden = YES;
+        _orderTypeNoneView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:_orderTypeNoneView];
+        [_orderTypeNoneView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+
+        UILabel *label = [UILabel new];
+        label.textColor = [UIColor grayColor];
+        label.font = [UIFont systemFontOfSize:14];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = @"手动\n添加乘客";
+        label.numberOfLines = 0;
+        [_orderTypeNoneView addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.orderTypeNoneView);
+        }];
     }
     return self;
 }
 
 -(void)setModel:(OrderListModel *)model {
     
+    
+   
+    if (model.type == OrderTypeNone) {
+        self.orderTypeNoneView.hidden = NO;
+    }
+    if (model.type == OrderTypeFellow) {
+        self.inCarImg.hidden = YES;
+        self.inCarLabel.hidden = YES;
+        self.payImg.hidden = YES;
+        self.payLabel.hidden = YES;
+        self.orderTypeFellowView.hidden = NO;
+    }
+    
     [_picImageV sd_setImageWithURL:[NSURL URLWithString:model.user.portrait]];
     _name.text = model.user.nickname;
     _count.text = [NSString stringWithFormat:@"%ld人",(long)model.personNum];
-    
+    _fromLabel.text = model.startName;
+    _toLabel.text = model.destinationName;
     
     
     if (model.payStatus == 2) {
         _payLabel.text = @"未支付";
+        _payLabel.textColor = [UIColor grayColor];
+        _picImageV.image = [UIImage imageNamed:@"ico_home_pay_gary"];
     } else {
         _payLabel.text = @"已支付";
+        _payLabel.textColor = kRGBColor(237, 116, 70);
+        _picImageV.image = [UIImage imageNamed:@"ico_home_pay"];
     }
-    
-    switch (model.orderStatus) {
-        case 0:
-            //送程中
-            break;
-        case 2:
-            //已完成
-            break;
-        case 3:
-            //已超时
-            break;
-        case 4:
-            //已取消
-            break;
-        case 5:
-            //待支付
-            break;
-        case 6:
-            //正在派车
-            break;
-        case 7:
-            //正在接客
-            break;
-        case 8:
-            //确认到达目的地
-            break;
-        case 9:
-            //已到达接乘点
-            break;
-        default:
-            break;
+    NSString *carType = [OrderStatusTool getCarStatu:model.orderStatus];
+    if ([carType isEqualToString:@"已上车"]) {
+        _inCarImg.image = [UIImage imageNamed:@"ico_home_inCar"];
+        _inCarLabel.textColor = kRGBColor(37, 124, 225);
+        _inCarLabel.text =carType;
     }
-    
+    if ([carType isEqualToString:@"已下车"]) {
+        _inCarLabel.text =carType;
+        _inCarLabel.textColor = [UIColor grayColor];
+        _inCarImg.image = [UIImage imageNamed:@"ico_home_inCar_gary"];
+    }
     
 }
 

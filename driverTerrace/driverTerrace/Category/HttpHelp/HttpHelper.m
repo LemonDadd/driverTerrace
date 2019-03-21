@@ -19,10 +19,10 @@
     NSMutableDictionary *theDic = [[NSMutableDictionary alloc] initWithDictionary:paramDictionary];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    //https
-    //[manager setSecurityPolicy:[HttpHelpBase customSecurityPolicy]];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    //https
+//    //[manager setSecurityPolicy:[HttpHelpBase customSecurityPolicy]];
     
     [manager POST:urlString parameters:theDic progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -43,13 +43,13 @@
     NSMutableDictionary *theDic = [[NSMutableDictionary alloc] initWithDictionary:paramDictionary];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    //https
-    //[manager setSecurityPolicy:[HttpHelpBase customSecurityPolicy]];
-    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-    manager.requestSerializer.timeoutInterval = timeOutSeconds;
-    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    //https
+//    //[manager setSecurityPolicy:[HttpHelpBase customSecurityPolicy]];
+//    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+//    manager.requestSerializer.timeoutInterval = timeOutSeconds;
+//    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     
    
     

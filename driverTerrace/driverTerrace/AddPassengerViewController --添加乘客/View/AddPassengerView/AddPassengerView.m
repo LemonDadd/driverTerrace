@@ -39,7 +39,7 @@
     self = [super init];
     if (self) {
         _array = @[@"乘客姓名",@"服务方式",@"出发地",@"目的地",@"乘车时间",@"是否支付车费",@"当前是否上车"];
-        _parray = @[@"请填写乘客姓名",@"站——站",@"请选择出发地",@"请选择目的地",@"请选择乘车时间"];
+        _parray = @[@"请填写乘客姓名",@"站——站",@"请选择出发地",@"请选择目的地",@"请选择乘车时间",@"已付款",@"已上车"];
         _tab = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tab.backgroundColor = [UIColor whiteColor];
         _tab.layer.masksToBounds  = YES;
@@ -83,82 +83,76 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  {
-    kWeakSelf(self);
-    if (indexPath.row == 5) {
-        AddSelectedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddSelectedTableViewCell"];
-        if (cell == nil) {
-            cell = [[AddSelectedTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddSelectedTableViewCell"];
-        }
-        cell.leftLabel.text = _array[indexPath.row];
-        cell.dropdownListView.dataSource = _payTypeList;
-        [cell.dropdownListView setDropdownListViewSelectedBlock:^(EBDropdownListView *dropdownListView) {
-            weakself.payType =dropdownListView.selectedItem.itemId;
-        }];
-        return cell;
-    }else if (indexPath.row ==6){
-        AddSelectedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddSelectedTableViewCell1"];
-        if (cell == nil) {
-            cell = [[AddSelectedTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddSelectedTableViewCell2"];
-        }
-        cell.leftLabel.text = _array[indexPath.row];
-        cell.dropdownListView.dataSource = _carTypeList;
-        [cell.dropdownListView setDropdownListViewSelectedBlock:^(EBDropdownListView *dropdownListView) {
-             weakself.inCarType =dropdownListView.selectedItem.itemId;
-        }];
-        return cell;
-    }else  {
-        MyTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyTextFieldTableViewCell"];
-        if (cell == nil) {
-            cell = [[MyTextFieldTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyTextFieldTableViewCell"];
-        }
-        
-        cell.textField.placeholder = _parray[indexPath.row];
-        cell.leftLabel.text = _array[indexPath.row];
-        cell.textField.enabled =false;
-        cell.textField.placeholder = _parray[indexPath.row];
-        if (indexPath.row == 0) {
-            cell.textField.enabled =true;
-            _name = cell.textField;
-        }
-        if (indexPath.row == 1) {
-            cell.textField.text = _parray[indexPath.row];
-            _fuwu = cell.textField;
-        }
-        if (indexPath.row == 2) {
-            _fromField = cell.textField;
-        }
-        if (indexPath.row == 3) {
-            _toField = cell.textField;
-        }
-        if (indexPath.row == 3) {
-            _timeField = cell.textField;
-        }
-        
-        return cell;
+    //kWeakSelf(self);
+    //    if (indexPath.row == 5) {
+    //        AddSelectedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddSelectedTableViewCell"];
+    //        if (cell == nil) {
+    //            cell = [[AddSelectedTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddSelectedTableViewCell"];
+    //        }
+    //        cell.leftLabel.text = _array[indexPath.row];
+    //        cell.dropdownListView.dataSource = _payTypeList;
+    //        [cell.dropdownListView setDropdownListViewSelectedBlock:^(EBDropdownListView *dropdownListView) {
+    //            weakself.payType =dropdownListView.selectedItem.itemName;
+    //        }];
+    //        return cell;
+    //    }else if (indexPath.row ==6){
+    //        AddSelectedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddSelectedTableViewCell1"];
+    //        if (cell == nil) {
+    //            cell = [[AddSelectedTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddSelectedTableViewCell2"];
+    //        }
+    //        cell.leftLabel.text = _array[indexPath.row];
+    //        cell.dropdownListView.dataSource = _carTypeList;
+    //        [cell.dropdownListView setDropdownListViewSelectedBlock:^(EBDropdownListView *dropdownListView) {
+    //             weakself.inCarType =dropdownListView.selectedItem.itemName;
+    //        }];
+    //        return cell;
+    //    }else  {
+    MyTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyTextFieldTableViewCell"];
+    if (cell == nil) {
+        cell = [[MyTextFieldTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyTextFieldTableViewCell"];
     }
+    
+    cell.textField.placeholder = _parray[indexPath.row];
+    cell.leftLabel.text = _array[indexPath.row];
+    cell.textField.enabled =false;
+    cell.textField.placeholder = _parray[indexPath.row];
+    if (indexPath.row == 0) {
+        cell.textField.enabled =true;
+        _name = cell.textField;
+    }
+    if (indexPath.row == 1) {
+        cell.textField.text = _parray[indexPath.row];
+        _fuwu = cell.textField;
+    }
+    if (indexPath.row == 2) {
+        _fromField = cell.textField;
+        _fromField.text = _model.circuit.startName;
+    }
+    if (indexPath.row == 3) {
+        _toField = cell.textField;
+        _toField.text = _model.circuit.destinationName;
+    }
+    if (indexPath.row == 4) {
+        _timeField = cell.textField;
+    }
+    if (indexPath.row == 5 || indexPath.row == 6) {
+        cell.textField.text = _parray[indexPath.row];
+    }
+    
+    return cell;
+    //    }
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.row == 2) {
-        CityViewController *vc= [CityViewController new];
-        vc.cityType = CitytypeFrom;
-        [self.viewController.navigationController pushViewController:vc animated:YES];
-    }
-    
-    if (indexPath.row == 3) {
-        CityViewController *vc= [CityViewController new];
-        vc.cityType = CitytypeTo;
-        [self.viewController.navigationController pushViewController:vc animated:YES];
-    }
-    
+    kWeakSelf(self);
     if (indexPath.row == 4) {
         [self.lzPickerView lzPickerVIewType:LZPickerViewTypeWeigth];
         self.lzPickerView.dataSource = @[[self getOneWeek],[self getTime]];
         self.lzPickerView.titleText = @"乘车时间";
         self.lzPickerView.selectValue  = ^(NSString *value){
+            weakself.timeField.text = value;
         };
         [self.lzPickerView show];
     }
@@ -168,7 +162,7 @@
     NSMutableArray *arr = [NSMutableArray array];
     for (NSInteger i=0; i<7; i++) {
         NSDate  *date = [NSDate jk_dateAfterDate:[NSDate date] day:i+1];
-        NSString * timeStr = [NSString stringWithFormat:@"%lu月%lu日",(unsigned long)[NSDate jk_month:date],(unsigned long)[NSDate jk_day:date]];
+        NSString * timeStr =[NSDate jk_stringWithDate:date format:@"MM-dd"];
         [arr addObject:timeStr];
     }
     return [NSArray arrayWithArray:arr];
@@ -188,15 +182,36 @@
 
 
 - (void)save {
-    [AllRequest requestOfflineUserByServicetype:@"1" start:_fromField.text destination:_toField.text bytime:_timeField.text pay:_payType getoncar:_inCarType name:_name.text driverOrderid:@"" request:^(BOOL message, NSString * _Nonnull errorMsg) {
+    
+    if (!self.name.text.length) {
+        [CustomView alertMessage:@"请输入姓名" view:self];
+        return;
+    }
+    if (!self.timeField.text.length) {
+        [CustomView alertMessage:@"请选择出发时间" view:self];
+        return;
+    }
+//    if (!self.payType.length) {
+//        [CustomView alertMessage:@"请选择是否支付车费" view:self];
+//        return;
+//    }
+//    if (!self.inCarType.length) {
+//        [CustomView alertMessage:@"请选择是否上车" view:self];
+//        return;
+//    }
+    
+    [AllRequest requestOfflineUserByServicetype:@"站到站" bytime:_timeField.text pay:@"" getoncar:@"" name:_name.text driverOrderid:_model.orderId request:^(BOOL message, NSString * _Nonnull errorMsg) {
         if (message) {
-            [[CustomView getInstancetype]showAlertView:@"添加成功" byView:self delay:1 completion:^{
-                [self.viewController.navigationController popViewControllerAnimated:YES];
-            }];
+            [self.viewController.navigationController popViewControllerAnimated:YES];
         } else {
             [CustomView alertMessage:errorMsg view:self];
         }
     }];
+}
+
+-(void)setModel:(OrderModel *)model {
+    _model =model;
+    [_tab reloadData];
 }
 
 

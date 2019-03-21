@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeAlertView : BaseView
 
+@property (nonatomic, assign)NSInteger indx;
+
+- (instancetype)initWithList:(NSArray *)list;
+
 @end
 
 NS_ASSUME_NONNULL_END
